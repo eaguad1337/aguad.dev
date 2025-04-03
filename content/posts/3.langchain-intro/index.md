@@ -3,8 +3,7 @@ title: "Langchain, Ollama and MySQL"
 date: 2025-04-02
 draft: false
 description: "Using LangChain to query a database with natural language"
-tags: ["python", "mysql", "database", "orm", "ai", "langchain"]
-categories: ["programming", "ai"]
+tags: ["python", "mysql", "langchain", "ollama"]
 showTableOfContents: true
 slug: "langchain"
 ---

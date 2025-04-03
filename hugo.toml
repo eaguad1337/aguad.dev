@@ -46,3 +46,28 @@ defaultContentLanguage = "en"
     name = "About"
     pageRef = "about"
     weight = 20
+
+[params.article]
+  showHero = true
+  heroStyle = "basic"
+  showDate = true
+  showAuthor = true
+  showBreadcrumbs = false
+  showDraftLabel = true
+  showEdit = false
+  showReadingTime = true
+  showTableOfContents = true
+  showTaxonomies = true
+  showWordCount = true
+  showSummary = true
+
+[params.homepage]
+  layout = "profile" # valid options: page, profile, hero, card, background, custom
+  #homepageImage = "bg2.jpg" # used in: hero, and card
+  showRecent = true
+  showRecentItems = 6
+  showMoreLink = true
+  showMoreLinkDest = "/posts/"
+  cardView = true
+  cardViewScreenWidth = false
+  layoutBackgroundBlur = false # only used when layout equals background

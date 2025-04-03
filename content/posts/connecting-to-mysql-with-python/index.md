@@ -3,8 +3,7 @@ title: "Connecting to MySQL with Python: A Complete Guide"
 date: 2025-04-02
 draft: false
 description: "Learn how to connect to MySQL databases in Python using various methods including direct connector and ORM approaches."
-tags: ["python", "mysql", "database", "orm"]
-categories: ["programming", "database"]
+tags: ["python", "mysql", "masoniteorm"]
 showTableOfContents: true
 ---
 # Connecting to MySQL with Python: A Complete Guide

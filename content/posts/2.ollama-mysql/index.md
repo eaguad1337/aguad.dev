@@ -3,8 +3,7 @@ title: "Using an AI model to ask questions to your database"
 date: 2025-04-01
 draft: false
 description: "Ollama and MySQL"
-tags: ["python", "mysql", "database", "orm", "ai"]
-categories: ["programming", "ai"]
+tags: ["python", "mysql", "ollama"]
 showTableOfContents: true
 slug: "using-ai-model-to-ask-questions-to-database"
 ---
