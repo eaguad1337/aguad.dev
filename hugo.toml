@@ -1,0 +1,48 @@
+baseURL = "https://aguad.dev/"
+languageCode = "en-us"
+title = "@eduaguad // Eduardo Aguad"
+theme = "blowfish"
+
+# Enable Emojis
+enableEmojis = true
+
+# Set the default theme
+defaultContentLanguage = "en"
+
+# Enable search
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[params]
+  # Site description
+  description = "A blog about technology, programming, and database connections"
+
+  # Default theme color scheme
+  colorScheme = "avocado"
+  defaultAppearance = "dark"
+
+  # Show article summary in homepage
+  summaryLength = 30
+
+  # Author information
+  [params.author]
+    name = "Eduardo Aguad"
+    image = "https://avatars.githubusercontent.com/u/19355144?v=4"
+    headline = "Father of one, husband and technology enthusiast."
+    bio = "Passionate about technology and sharing knowledge."
+    links = [
+      { github = "https://github.com/eaguad1337" },
+      { instagram = "https://www.instagram.com/eaguad" },
+      { tiktok = "https://www.tiktok.com/@eduaguad" },
+    ]
+
+# Main menu
+[menu]
+  [[menu.main]]
+    name = "Blog"
+    pageRef = "posts"
+    weight = 10
+  [[menu.main]]
+    name = "About"
+    pageRef = "about"
+    weight = 20

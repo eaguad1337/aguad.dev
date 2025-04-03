@@ -1,0 +1,41 @@
+# Hugo build output
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
+
+# Hugo cache
+/.hugo_build.lock
+
+# Temporary files
+*.log
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+.env.*
+
+# IDE specific files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.settings
+*.swp
+*.swo
+
+# Node modules if using npm/yarn
+node_modules/
+
+# OS generated files
+.directory
+.fuse_hidden*
+.Trash-*
+.nfs*
+
+# Local development server data
+/data/dummy/
