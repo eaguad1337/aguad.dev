@@ -1,73 +1,54 @@
 baseURL = "https://aguad.dev/"
 languageCode = "en-us"
-title = "@eduaguad // Eduardo Aguad"
-theme = "blowfish"
+title = "Eduardo Aguad"
 
 # Enable Emojis
 enableEmojis = true
 
-# Set the default theme
+# Default language
 defaultContentLanguage = "en"
 
-# Enable search
+# Outputs
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
 
 [params]
   # Site description
-  description = "A blog about technology, programming, and database connections"
-
-  # Default theme color scheme
-  colorScheme = "avocado"
-  defaultAppearance = "dark"
-
-  # Show article summary in homepage
-  summaryLength = 30
-
+  description = "CTO @ meat.cl & blackdoor.cl | Software engineer passionate about technology and databases"
+  
   # Author information
   [params.author]
     name = "Eduardo Aguad"
     image = "https://avatars.githubusercontent.com/u/19355144?v=4"
-    headline = "Father of one, husband and technology enthusiast."
-    bio = "Passionate about technology and sharing knowledge."
-    links = [
-      { github = "https://github.com/eaguad1337" },
-      { instagram = "https://www.instagram.com/eaguad" },
-      { tiktok = "https://www.tiktok.com/@eduaguad" },
-    ]
-
+    bio = "Father of one, husband and technology enthusiast."
+    
 # Main menu
 [menu]
   [[menu.main]]
-    name = "Blog"
-    pageRef = "posts"
+    name = "Work"
+    url = "/#work"
     weight = 10
   [[menu.main]]
-    name = "About"
-    pageRef = "about"
+    name = "Blog"
+    url = "/#blog"
     weight = 20
+  [[menu.main]]
+    name = "About"
+    url = "/#about"
+    weight = 30
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 40
 
-[params.article]
-  showHero = true
-  heroStyle = "basic"
-  showDate = true
-  showAuthor = true
-  showBreadcrumbs = false
-  showDraftLabel = true
-  showEdit = false
-  showReadingTime = true
-  showTableOfContents = true
-  showTaxonomies = true
-  showWordCount = true
-  showSummary = true
-
-[params.homepage]
-  layout = "profile" # valid options: page, profile, hero, card, background, custom
-  #homepageImage = "bg2.jpg" # used in: hero, and card
-  showRecent = true
-  showRecentItems = 6
-  showMoreLink = true
-  showMoreLinkDest = "/posts/"
-  cardView = true
-  cardViewScreenWidth = false
-  layoutBackgroundBlur = false # only used when layout equals background
+# Markup settings
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+  [markup.highlight]
+    style = "github-dark"
+    lineNos = true
+    tabWidth = 2

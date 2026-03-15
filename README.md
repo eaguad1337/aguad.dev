@@ -1,55 +1,62 @@
-# aguad.dev - Personal Blog
+# aguad.dev
 
-A personal blog built with Hugo and the Blowfish theme.
+Modern, monochrome landing page for [aguad.dev](https://aguad.dev)
 
-## Project Structure
+## 🎨 Design
 
-- `content/`: Contains all the blog content
-  - `posts/`: Blog posts
-  - `about/`: About page
-- `themes/blowfish/`: The Blowfish theme (Git submodule)
-- `static/`: Static files like images
-- `layouts/`: Custom layouts
-- `hugo.toml`: Site configuration
+- **Style**: Minimalist, technological, monochrome (black & white)
+- **Colors**: #0a0a0a (bg), #1a1a1a (surface), #ffffff (text), #666666 (muted)
+- **Typography**: Inter (sans-serif) + JetBrains Mono (monospace)
+- **Animations**: Matrix rain, typewriter effect, scroll reveal
 
-## Setup & Development
+## 🚀 Features
 
-### Prerequisites
+- **Hero Section**: Name, title "CTO @ meat.cl & blackdoor.cl" with typewriter animation
+- **Work Section**: Cards for meat.cl and blackdoor.cl with hover effects
+- **Blog Section**: Latest 3 posts with summaries
+- **About Section**: Bio with GitHub avatar and grayscale hover effect
+- **Social Links**: GitHub, Instagram, TikTok
+- **Responsive**: Mobile-first design
 
-- [Hugo Extended](https://gohugo.io/installation/) (v0.100.0+)
-- Git
+## 🛠️ Tech Stack
 
-### Local Development
+- [Hugo](https://gohugo.io/) - Static site generator
+- Vanilla CSS - Custom design system
+- Vanilla JS - Animations and interactions
+- GitHub Actions - Automated deployment
 
-1. Clone the repository:
-   ```bash
-   git clone --recurse-submodules https://github.com/yourusername/aguad.dev.git
-   cd aguad.dev
-   ```
+## 📁 Structure
 
-2. Start the Hugo development server:
-   ```bash
-   hugo server -D
-   ```
-
-3. Visit `http://localhost:1313` in your browser
-
-### Creating New Content
-
-To create a new blog post:
-```bash
-hugo new content posts/my-new-post/index.md
+```
+├── assets/
+│   ├── css/main.css      # Custom styles with animations
+│   └── js/main.js        # Matrix rain, typewriter, scroll reveal
+├── layouts/
+│   ├── _default/         # Base, single, list templates
+│   ├── partials/         # Head, navbar, footer, scripts
+│   └── index.html        # Landing page
+├── content/
+│   ├── posts/            # Blog posts
+│   ├── about/            # About page
+│   └── _index.md         # Home page content
+├── hugo.toml             # Site configuration
+└── .github/workflows/    # Deployment automation
 ```
 
-## Deployment
+## 📝 Development
 
-To build the site for production:
 ```bash
+# Run development server
+hugo server -D
+
+# Build for production
 hugo --minify
 ```
 
-The generated site will be in the `public/` directory, ready to be deployed to any static hosting service.
+## 🌐 Deployment
 
-## License
+Automatically deployed to GitHub Pages via GitHub Actions on push to `main`.
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+---
+
+© 2026 Eduardo Aguad — Built with Hugo ⚡

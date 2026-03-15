@@ -1,0 +1,50 @@
+{{ define "main" }}
+
+<!-- Page Header -->
+<header class="page-header">
+  <a href="{{ "/posts/" | relURL }}" class="back-link">← Back to Posts</a>
+  
+  <h1 class="page-title">{{ .Title }}</h1>
+  
+  <div class="post-meta">
+    <span>📅 {{ .Date.Format "Jan 2, 2006" }}</span>
+    {{ if .Params.readingTime }}
+    <span>⏱️ {{ .Params.readingTime }} min read</span>
+    {{ end }}
+    {{ if .Params.author }}
+    <span>✍️ {{ .Params.author }}</span>
+    {{ end }}
+  </div>
+  
+  {{ if .Description }}
+  <p class="page-description">{{ .Description }}</p>
+  {{ end }}
+</header>
+
+<!-- Content -->
+<article class="content">
+  {{ .Content }}
+</article>
+
+<!-- Navigation to other posts -->
+<nav style="max-width: 700px; margin: 4rem auto; padding: 0 2rem; display: flex; justify-content: space-between;">
+  {{ with .PrevInSection }}
+  <a href="{{ .RelPermalink }}" style="text-align: left;">
+    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); display: block; margin-bottom: 0.5rem;">← Previous</span>
+    <span style="font-weight: 500;">{{ .Title }}</span>
+  </a>
+  {{ else }}
+  <span></span>
+  {{ end }}
+  
+  {{ with .NextInSection }}
+  <a href="{{ .RelPermalink }}" style="text-align: right;">
+    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--color-text-muted); display: block; margin-bottom: 0.5rem;">Next →</span>
+    <span style="font-weight: 500;">{{ .Title }}</span>
+  </a>
+  {{ else }}
+  <span></span>
+  {{ end }}
+</nav>
+
+{{ end }}

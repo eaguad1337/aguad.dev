@@ -1,0 +1,26 @@
+{{ define "main" }}
+
+<!-- Page Header -->
+<header class="page-header">
+  <h1 class="page-title">{{ .Title }}</h1>
+  {{ if .Description }}
+  <p class="page-description">{{ .Description }}</p>
+  {{ else }}
+  <p class="page-description">All my thoughts on technology, programming, and databases.</p>
+  {{ end }}
+</header>
+
+<!-- Post List -->
+<div class="post-list">
+  {{ range .Pages }}
+  <article class="post-list-item">
+    <p class="post-list-date">{{ .Date.Format "January 2, 2006" }}</p>
+    <h2 class="post-list-title">
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h2>
+    <p class="post-list-summary">{{ .Summary | truncate 200 }}</p>
+  </article>
+  {{ end }}
+</div>
+
+{{ end }}

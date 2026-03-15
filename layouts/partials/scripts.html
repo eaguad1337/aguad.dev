@@ -1,0 +1,6 @@
+<!-- Matrix Rain Canvas -->
+<canvas id="matrix-canvas"></canvas>
+
+<!-- JavaScript -->
+{{ $js := resources.Get "js/main.js" | resources.Minify }}
+<script src="{{ $js.RelPermalink }}"></script>
