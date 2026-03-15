@@ -4,11 +4,29 @@
 
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize all animations
+  initThemeToggle();
   initMatrixRain();
   initTypewriter();
   initScrollReveal();
   initSmoothScroll();
+  initContactForm();
 });
+
+// Theme Toggle
+function initThemeToggle() {
+  const toggle = document.getElementById('theme-toggle');
+  if (!toggle) return;
+  
+  toggle.addEventListener('click', function() {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    
+    document.documentElement.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  });
+}
+
+// Contact Form
 
 // Matrix Rain Effect
 function initMatrixRain() {
@@ -167,3 +185,66 @@ document.addEventListener('mousemove', (e) => {
   
   hero.style.transform = `translate(${x}px, ${y}px)`;
 });
+
+// Contact Form Handling
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  
+  const message = document.getElementById('form-message');
+  
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const submitBtn = form.querySelector('.form-submit');
+    const originalText = submitBtn.innerHTML;
+    
+    // Show loading state
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = 'Sending...';
+    
+    // Get form data
+    const formData = new FormData(form);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const messageText = formData.get('message');
+    
+    // Simple validation
+    if (!name || !email || !messageText) {
+      showMessage('Please fill in all fields.', 'error');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+      return;
+    }
+    
+    // Email validation regex
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      showMessage('Please enter a valid email address.', 'error');
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+      return;
+    }
+    
+    // Simulate form submission (since no backend is configured)
+    // In production, replace this with actual form submission to Formspree, Netlify Forms, etc.
+    setTimeout(() => {
+      showMessage('Thanks for your message! I\'ll get back to you soon.', 'success');
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+    }, 1000);
+  });
+  
+  function showMessage(text, type) {
+    if (!message) return;
+    
+    message.textContent = text;
+    message.className = 'form-message ' + type;
+    
+    // Hide message after 5 seconds
+    setTimeout(() => {
+      message.className = 'form-message';
+    }, 5000);
+  }
+}
