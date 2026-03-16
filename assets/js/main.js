@@ -268,13 +268,12 @@ function initContactForm() {
     height: 100vh;
     background: rgba(0, 0, 0, 0.85);
     backdrop-filter: blur(8px);
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 99999;
     opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity 0.4s ease;
   `;
   
   // Create popup container
@@ -336,17 +335,6 @@ function initContactForm() {
         from { transform: rotate(0deg); }
         to { transform: rotate(360deg); }
       }
-      #konami-overlay.active {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      #konami-overlay.active > div {
-        transform: scale(1) !important;
-      }
-      #konami-overlay > div {
-        transform: scale(0.8);
-        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      }
     `;
     document.head.appendChild(style);
   }
@@ -362,15 +350,21 @@ function initContactForm() {
       if (konamiIndex === konamiCode.length) {
         // Konami code complete!
         konamiActive = true;
-        overlay.classList.add('active');
+        overlay.style.display = 'flex';
+        // Force reflow
+        void overlay.offsetWidth;
+        overlay.style.opacity = '1';
         
-        // Play sound effect (optional, using Web Audio API for a retro beep)
+        // Play sound effect
         playKonamiSound();
         
         // Hide after 7 seconds
         setTimeout(() => {
-          overlay.classList.remove('active');
-          konamiActive = false;
+          overlay.style.opacity = '0';
+          setTimeout(() => {
+            overlay.style.display = 'none';
+            konamiActive = false;
+          }, 400);
         }, 7000);
         
         konamiIndex = 0;
@@ -383,8 +377,11 @@ function initContactForm() {
   
   // Close on click
   overlay.addEventListener('click', () => {
-    overlay.classList.remove('active');
-    konamiActive = false;
+    overlay.style.opacity = '0';
+    setTimeout(() => {
+      overlay.style.display = 'none';
+      konamiActive = false;
+    }, 400);
   });
   
   // Retro sound effect
