@@ -257,7 +257,7 @@ function initContactForm() {
   let konamiIndex = 0;
   let konamiActive = false;
   
-  // Create overlay container
+  // Create overlay container - centered popup style
   const overlay = document.createElement('div');
   overlay.id = 'konami-overlay';
   overlay.style.cssText = `
@@ -266,29 +266,65 @@ function initContactForm() {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
+    z-index: 99999;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s ease;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  `;
+  
+  // Create popup container
+  const popup = document.createElement('div');
+  popup.style.cssText = `
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 100px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    transform: scale(0.8);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   `;
   
   // Create spinning image
   const img = document.createElement('img');
-  img.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEqSIeDvXZ1ZDWFduJzOpXfzrVrc8oiRhW5A&s';
+  img.src = '/images/konami-easter-egg.png';
   img.alt = 'Konami Easter Egg';
   img.style.cssText = `
-    max-width: 300px;
-    max-height: 300px;
+    width: 280px;
+    height: 280px;
+    object-fit: cover;
     border-radius: 50%;
-    animation: konami-spin 3s linear infinite;
-    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+    animation: konami-spin 2s linear infinite;
+    box-shadow: 0 0 60px rgba(255, 255, 255, 0.8), 0 0 120px rgba(255, 255, 255, 0.4);
+    border: 4px solid rgba(255, 255, 255, 0.9);
+    display: block;
   `;
   
-  overlay.appendChild(img);
+  // Ensure image loads
+  img.onload = () => console.log('Konami image loaded');
+  img.onerror = () => console.error('Konami image failed to load');
+  
+  // Add title text
+  const title = document.createElement('div');
+  title.textContent = '🎮 KONAMI CODE ACTIVATED!';
+  title.style.cssText = `
+    margin-top: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
+  `;
+  
+  popup.appendChild(img);
+  popup.appendChild(title);
+  overlay.appendChild(popup);
   document.body.appendChild(overlay);
   
   // Add keyframes for spin animation
@@ -304,12 +340,12 @@ function initContactForm() {
         opacity: 1;
         pointer-events: auto;
       }
-      #konami-overlay.active img {
-        animation: konami-spin 2s linear infinite, konami-pulse 1s ease-in-out infinite alternate;
+      #konami-overlay.active > div {
+        transform: scale(1) !important;
       }
-      @keyframes konami-pulse {
-        from { box-shadow: 0 0 30px rgba(255, 255, 255, 0.3); }
-        to { box-shadow: 0 0 80px rgba(255, 255, 255, 0.8); }
+      #konami-overlay > div {
+        transform: scale(0.8);
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       }
     `;
     document.head.appendChild(style);
@@ -331,11 +367,11 @@ function initContactForm() {
         // Play sound effect (optional, using Web Audio API for a retro beep)
         playKonamiSound();
         
-        // Hide after 5 seconds
+        // Hide after 7 seconds
         setTimeout(() => {
           overlay.classList.remove('active');
           konamiActive = false;
-        }, 5000);
+        }, 7000);
         
         konamiIndex = 0;
       }
