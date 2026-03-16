@@ -167,3 +167,129 @@ document.addEventListener('mousemove', (e) => {
   
   hero.style.transform = `translate(${x}px, ${y}px)`;
 });
+
+// ============================================
+// KONAMI CODE EASTER EGG
+// ============================================
+(function initKonamiCode() {
+  const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a', 'Enter'];
+  let konamiIndex = 0;
+  let konamiActive = false;
+  
+  // Create overlay container
+  const overlay = document.createElement('div');
+  overlay.id = 'konami-overlay';
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  `;
+  
+  // Create spinning image
+  const img = document.createElement('img');
+  img.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEqSIeDvXZ1ZDWFduJzOpXfzrVrc8oiRhW5A&s';
+  img.alt = 'Konami Easter Egg';
+  img.style.cssText = `
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 50%;
+    animation: konami-spin 3s linear infinite;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+  `;
+  
+  overlay.appendChild(img);
+  document.body.appendChild(overlay);
+  
+  // Add keyframes for spin animation
+  if (!document.getElementById('konami-styles')) {
+    const style = document.createElement('style');
+    style.id = 'konami-styles';
+    style.textContent = `
+      @keyframes konami-spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+      }
+      #konami-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      #konami-overlay.active img {
+        animation: konami-spin 2s linear infinite, konami-pulse 1s ease-in-out infinite alternate;
+      }
+      @keyframes konami-pulse {
+        from { box-shadow: 0 0 30px rgba(255, 255, 255, 0.3); }
+        to { box-shadow: 0 0 80px rgba(255, 255, 255, 0.8); }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  
+  // Listen for key sequence
+  document.addEventListener('keydown', (e) => {
+    const key = e.key.toLowerCase();
+    const expectedKey = konamiCode[konamiIndex].toLowerCase();
+    
+    if (key === expectedKey) {
+      konamiIndex++;
+      
+      if (konamiIndex === konamiCode.length) {
+        // Konami code complete!
+        konamiActive = true;
+        overlay.classList.add('active');
+        
+        // Play sound effect (optional, using Web Audio API for a retro beep)
+        playKonamiSound();
+        
+        // Hide after 5 seconds
+        setTimeout(() => {
+          overlay.classList.remove('active');
+          konamiActive = false;
+        }, 5000);
+        
+        konamiIndex = 0;
+      }
+    } else {
+      // Reset if wrong key
+      konamiIndex = 0;
+    }
+  });
+  
+  // Close on click
+  overlay.addEventListener('click', () => {
+    overlay.classList.remove('active');
+    konamiActive = false;
+  });
+  
+  // Retro sound effect
+  function playKonamiSound() {
+    try {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.setValueAtTime(440, audioContext.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(880, audioContext.currentTime + 0.1);
+      
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.3);
+    } catch (e) {
+      // Audio not supported, silently fail
+    }
+  }
+})();
