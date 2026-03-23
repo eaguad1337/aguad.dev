@@ -243,9 +243,61 @@
             gap: 16px;
         }
 
-        /* ASCII Art Lobster Terminal */
         .hero-visual {
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 69, 69, 0.15);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Terminal Section */
+        .terminal-section {
+            background: var(--bg-secondary);
+            padding: 80px 0;
+        }
+
+        .terminal-section-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .terminal-section-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .terminal-section-text h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .terminal-section-text p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .terminal-wrapper {
+            max-width: 600px;
         }
 
         .terminal {
@@ -799,6 +851,33 @@
                     </div>
                 </div>
                 <div class="hero-visual fade-in">
+                    <img src="hero-lobster.png" alt="OpenClaw Agent" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TERMINAL SECTION
+         ============================================ -->
+    <section class="terminal-section">
+        <div class="container">
+            <div class="terminal-section-grid">
+                <div class="terminal-section-text fade-in">
+                    <h2>Instalación en <span style="color: var(--accent);">3 comandos</span></h2>
+                    <p>
+                        OpenClaw se instala en segundos. Solo necesitas Node.js 22+ y tu API key favorita (Claude, OpenAI o modelos locales).
+                    </p>
+                    <p>
+                        Después del taller, tendrás tu propio agente corriendo localmente, conectado a tus apps y listo para automatizar tus tareas diarias.
+                    </p>
+                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+                        <span style="padding: 8px 16px; background: rgba(0, 212, 170, 0.1); border: 1px solid rgba(0, 212, 170, 0.2); border-radius: 100px; font-size: 14px; color: var(--terminal-green);">🚀 Node.js 22+</span>
+                        <span style="padding: 8px 16px; background: rgba(255, 69, 69, 0.1); border: 1px solid rgba(255, 69, 69, 0.2); border-radius: 100px; font-size: 14px; color: var(--accent);">⚡ NPM Global</span>
+                        <span style="padding: 8px 16px; background: rgba(180, 180, 190, 0.1); border: 1px solid rgba(180, 180, 190, 0.2); border-radius: 100px; font-size: 14px; color: var(--text-secondary);">🔑 Tu API Key</span>
+                    </div>
+                </div>
+                <div class="terminal-wrapper fade-in">
                     <div class="terminal">
                         <div class="terminal-header">
                             <div class="terminal-dot red"></div>
@@ -815,19 +894,10 @@
                             <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Connecting to Telegram</div>
                             <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Loading skills from ClawHub</div>
                             <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Agent ready!</div>
+                            <div style="margin-top: 8px;"><span class="terminal-prompt">$</span> <span class="terminal-command">openclaw gateway start</span></div>
+                            <div style="margin-top: 8px; color: var(--terminal-green);">🟢 Gateway running on port 3000</div>
                             <div class="ascii-lobster">
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀<br>
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣤⣴⣶⣶⣦⣤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀<br>
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀<br>
-⠀⠀⠀⠀⠀⠀⠀⠀⣠⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀<br>
-⠀⠀⠀⠀⠀⠀⢀⣴⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⡀⠀⠀⠀<br>
-⠀⠀⠀⠀⠀⣠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣄⠀⠀<br>
-⠀⠀⠀⢀⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷⡀<br>
-⠀⠀⢠⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡄<br>
-⠀⢀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿<br>
-⠀⣼⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣧<br>
-⢰⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡆<br>
-⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣷<br>
+    🦞
                             </div>
                         </div>
                     </div>
