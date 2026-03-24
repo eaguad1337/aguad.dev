@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Openclaw! 🦞 x eduaguad — Taller Online Gratuito</title>
     <meta name="description" content="Aprende a instalar, asegurar y conectar OpenClaw — el asistente open-source con más de 310.000 ⭐ en GitHub. Martes 31 de marzo, 8:00 PM Chile.">
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    
+
     <style>
         /* ============================================
            VARIABLES Y RESET
@@ -31,6 +31,16 @@
             --border: rgba(255, 255, 255, 0.08);
             --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(255, 69, 69, 0.15) 0%, transparent 50%),
                                radial-gradient(ellipse at 100% 100%, rgba(0, 212, 170, 0.08) 0%, transparent 40%);
+
+            /* Light section palette */
+            --light-bg: #F8F8FB;
+            --light-bg-alt: #EEEEF3;
+            --light-card: #FFFFFF;
+            --light-card-hover: #F0F0F5;
+            --light-text: #1A1A2E;
+            --light-text-secondary: #4A4A5A;
+            --light-text-muted: #8888A0;
+            --light-border: rgba(0, 0, 0, 0.08);
         }
 
         * {
@@ -70,6 +80,24 @@
         .fade-in.visible {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        /* ============================================
+           LIGHT SECTION BASE
+           ============================================ */
+        .section-light {
+            background: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        .section-light .section-title {
+            color: var(--light-text);
+        }
+
+        .section-light .section-tag {
+            background: rgba(255, 69, 69, 0.08);
+            border-color: rgba(255, 69, 69, 0.2);
+            color: var(--accent);
         }
 
         /* ============================================
@@ -145,6 +173,38 @@
            ============================================ */
         section {
             padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--terminal-green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            line-height: 1.7;
         }
 
         /* ============================================
@@ -264,129 +324,114 @@
             50% { transform: translateY(-20px); }
         }
 
-        /* Terminal Section */
-        .terminal-section {
-            background: var(--bg-secondary);
-            padding: 80px 0;
+        /* ============================================
+           PROBLEM / PAIN SECTION (LIGHT)
+           ============================================ */
+        .problem {
+            position: relative;
+            overflow: hidden;
         }
 
-        .terminal-section-grid {
+        .problem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 69, 69, 0.3), transparent);
+        }
+
+        .problem-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 60px;
-            align-items: center;
+            gap: 48px;
         }
 
-        @media (min-width: 1024px) {
-            .terminal-section-grid {
-                grid-template-columns: 1fr 1fr;
+        @media (min-width: 768px) {
+            .problem-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
-        .terminal-section-text h2 {
-            font-size: clamp(28px, 4vw, 40px);
-            font-weight: 800;
+        .problem-card {
+            padding: 36px 28px;
+            background: var(--light-card);
+            border: 1px solid var(--light-border);
+            border-radius: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        .problem-icon {
+            width: 56px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 69, 69, 0.08);
+            border-radius: 16px;
+            font-size: 28px;
             margin-bottom: 20px;
         }
 
-        .terminal-section-text p {
-            font-size: 18px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 16px;
+        .problem-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--light-text);
         }
 
-        .terminal-wrapper {
-            max-width: 600px;
+        .problem-card p {
+            font-size: 15px;
+            color: var(--light-text-secondary);
+            line-height: 1.7;
         }
 
-        .terminal {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
-        }
-
-        .terminal-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .terminal-dot.red { background: #FF5F57; }
-        .terminal-dot.yellow { background: #FFBD2E; }
-        .terminal-dot.green { background: #28CA42; }
-
-        .terminal-body {
-            padding: 24px;
-            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-            font-size: 13px;
-            line-height: 1.8;
-            color: var(--text-secondary);
-        }
-
-        .terminal-prompt {
-            color: var(--terminal-green);
-        }
-
-        .terminal-accent {
-            color: var(--accent);
-        }
-
-        .terminal-command {
-            color: var(--text-primary);
-        }
-
-        .ascii-lobster {
-            color: var(--accent);
-            font-size: 11px;
-            line-height: 1.4;
-            margin-top: 16px;
-            opacity: 0.8;
-        }
-
-        /* ============================================
-           ¿QUÉ ES OPENCLAW?
-           ============================================ */
-        .about {
-            background: var(--bg-secondary);
-        }
-
-        .section-header {
+        .problem-lead {
             text-align: center;
             max-width: 700px;
             margin: 0 auto 60px;
         }
 
-        .section-tag {
-            display: inline-block;
-            padding: 8px 16px;
-            background: rgba(0, 212, 170, 0.1);
-            border: 1px solid rgba(0, 212, 170, 0.2);
-            border-radius: 100px;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--terminal-green);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 16px;
+        .problem-lead p {
+            font-size: 20px;
+            color: var(--light-text-secondary);
+            line-height: 1.8;
         }
 
-        .section-title {
-            font-size: clamp(32px, 4vw, 48px);
-            font-weight: 800;
-            line-height: 1.2;
-            margin-bottom: 16px;
+        .problem-lead strong {
+            color: var(--accent);
+        }
+
+        .problem-transition {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--light-border);
+        }
+
+        .problem-transition p {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--light-text);
+            line-height: 1.5;
+        }
+
+        .problem-transition span {
+            color: var(--accent);
+        }
+
+        /* ============================================
+           SOLUTION / ABOUT (DARK)
+           ============================================ */
+        .about {
+            background: var(--bg-secondary);
         }
 
         .about-grid {
@@ -482,7 +527,128 @@
         }
 
         /* ============================================
-           AGENDA
+           TERMINAL SECTION (LIGHT)
+           ============================================ */
+        .terminal-section {
+            padding: 100px 0;
+        }
+
+        .terminal-section-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .terminal-section-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .terminal-section-text h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--light-text);
+        }
+
+        .terminal-section-text p {
+            font-size: 18px;
+            color: var(--light-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .terminal-wrapper {
+            max-width: 600px;
+        }
+
+        .terminal {
+            background: #1A1A2E;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+        }
+
+        .terminal-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .terminal-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .terminal-dot.red { background: #FF5F57; }
+        .terminal-dot.yellow { background: #FFBD2E; }
+        .terminal-dot.green { background: #28CA42; }
+
+        .terminal-body {
+            padding: 24px;
+            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.8;
+            color: #B4B4BE;
+        }
+
+        .terminal-prompt {
+            color: var(--terminal-green);
+        }
+
+        .terminal-accent {
+            color: var(--accent);
+        }
+
+        .terminal-command {
+            color: #FFFFFF;
+        }
+
+        .ascii-lobster {
+            color: var(--accent);
+            font-size: 11px;
+            line-height: 1.4;
+            margin-top: 16px;
+            opacity: 0.8;
+        }
+
+        .tech-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .tech-pill--green {
+            background: rgba(0, 212, 170, 0.08);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            color: #00996B;
+        }
+
+        .tech-pill--red {
+            background: rgba(255, 69, 69, 0.08);
+            border: 1px solid rgba(255, 69, 69, 0.2);
+            color: var(--accent);
+        }
+
+        .tech-pill--gray {
+            background: rgba(100, 100, 120, 0.08);
+            border: 1px solid rgba(100, 100, 120, 0.2);
+            color: var(--light-text-secondary);
+        }
+
+        /* ============================================
+           AGENDA (DARK)
            ============================================ */
         .agenda-cards {
             display: grid;
@@ -548,12 +714,8 @@
         }
 
         /* ============================================
-           INSTRUCTOR
+           INSTRUCTOR (LIGHT)
            ============================================ */
-        .instructor {
-            background: var(--bg-secondary);
-        }
-
         .instructor-grid {
             display: grid;
             grid-template-columns: 1fr;
@@ -578,7 +740,7 @@
             border-radius: 50%;
             overflow: hidden;
             border: 4px solid var(--accent);
-            box-shadow: 0 0 40px var(--accent-glow);
+            box-shadow: 0 0 40px rgba(255, 69, 69, 0.15);
         }
 
         .instructor-avatar img {
@@ -591,6 +753,7 @@
             font-size: 28px;
             font-weight: 800;
             margin-bottom: 8px;
+            color: var(--light-text);
         }
 
         .instructor-title {
@@ -612,8 +775,8 @@
             justify-content: center;
             width: 44px;
             height: 44px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--light-card);
+            border: 1px solid var(--light-border);
             border-radius: 12px;
             transition: all 0.3s ease;
         }
@@ -627,12 +790,11 @@
         .social-link img {
             width: 20px;
             height: 20px;
-            filter: brightness(1.2);
         }
 
         .instructor-bio {
             font-size: 17px;
-            color: var(--text-secondary);
+            color: var(--light-text-secondary);
             line-height: 1.8;
             margin-bottom: 40px;
         }
@@ -661,14 +823,14 @@
             align-items: center;
             gap: 8px;
             padding: 16px 8px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
+            background: var(--light-card);
+            border: 1px solid var(--light-border);
             border-radius: 12px;
             transition: all 0.3s ease;
         }
 
         .tech-item:hover {
-            background: var(--bg-card-hover);
+            background: var(--light-card-hover);
             transform: translateY(-4px);
             border-color: rgba(255, 69, 69, 0.2);
         }
@@ -676,19 +838,47 @@
         .tech-item img {
             width: 28px;
             height: 28px;
-            filter: grayscale(100%) brightness(1.3);
             transition: filter 0.3s ease;
-        }
-
-        .tech-item:hover img {
-            filter: grayscale(0%) brightness(1);
         }
 
         .tech-item span {
             font-size: 10px;
             font-weight: 500;
-            color: var(--text-muted);
+            color: var(--light-text-muted);
             text-align: center;
+        }
+
+        /* ============================================
+           SOCIAL PROOF BANNER
+           ============================================ */
+        .proof-banner {
+            padding: 60px 0;
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .proof-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 48px;
+        }
+
+        .proof-item {
+            text-align: center;
+        }
+
+        .proof-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .proof-label {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-top: 4px;
         }
 
         /* ============================================
@@ -782,6 +972,11 @@
             margin-bottom: 24px;
         }
 
+        .footer-social .social-link {
+            background: var(--bg-card);
+            border-color: var(--border);
+        }
+
         .footer-info {
             font-size: 15px;
             color: var(--text-muted);
@@ -817,13 +1012,17 @@
                 font-size: 11px;
                 padding: 16px;
             }
+
+            .proof-items {
+                gap: 32px;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- ============================================
-         HERO SECTION
+         HERO SECTION (DARK)
          ============================================ -->
     <section class="hero">
         <div class="container">
@@ -832,7 +1031,7 @@
                     <div class="badge">Taller Online Gratuito</div>
                     <h1>Tu primer <span>agente de IA</span> autónomo en producción</h1>
                     <p class="hero-subtitle">
-                        Aprende a instalar, asegurar y conectar OpenClaw — el asistente open-source con más de 310.000 ⭐ en GitHub
+                        Mientras otros solo chatean con IA, tú vas a tener un agente que trabaja por ti: maneja archivos, controla apps y automatiza tu flujo de trabajo.
                     </p>
                     <div class="hero-meta">
                         <div class="hero-meta-item">
@@ -858,72 +1057,59 @@
     </section>
 
     <!-- ============================================
-         TERMINAL SECTION
+         THE PROBLEM (LIGHT) — Storytelling: Pain
          ============================================ -->
-    <section class="terminal-section">
+    <section class="problem section-light">
         <div class="container">
-            <div class="terminal-section-grid">
-                <div class="terminal-section-text fade-in">
-                    <h2>Instalación en <span style="color: var(--accent);">3 comandos</span></h2>
-                    <p>
-                        OpenClaw se instala en segundos. Solo necesitas Node.js 22+ y tu API key favorita (Claude, OpenAI o modelos locales).
-                    </p>
-                    <p>
-                        Después del taller, tendrás tu propio agente corriendo localmente, conectado a tus apps y listo para automatizar tus tareas diarias.
-                    </p>
-                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-                        <span style="padding: 8px 16px; background: rgba(0, 212, 170, 0.1); border: 1px solid rgba(0, 212, 170, 0.2); border-radius: 100px; font-size: 14px; color: var(--terminal-green);">🚀 Node.js 22+</span>
-                        <span style="padding: 8px 16px; background: rgba(255, 69, 69, 0.1); border: 1px solid rgba(255, 69, 69, 0.2); border-radius: 100px; font-size: 14px; color: var(--accent);">⚡ NPM Global</span>
-                        <span style="padding: 8px 16px; background: rgba(180, 180, 190, 0.1); border: 1px solid rgba(180, 180, 190, 0.2); border-radius: 100px; font-size: 14px; color: var(--text-secondary);">🔑 Tu API Key</span>
-                    </div>
+            <div class="problem-lead fade-in">
+                <div class="section-tag" style="background: rgba(255, 69, 69, 0.08); border-color: rgba(255, 69, 69, 0.2); color: var(--accent);">El problema</div>
+                <h2 class="section-title" style="color: var(--light-text);">La IA que usas hoy no trabaja por ti</h2>
+                <p>
+                    Copias y pegas respuestas de ChatGPT. Escribes el mismo prompt 10 veces. Saltas entre 5 tabs para hacer una tarea simple.
+                    <strong>Eso no es automatización — es trabajo manual con pasos extra.</strong>
+                </p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🔄</div>
+                    <h3>Copiar y pegar infinito</h3>
+                    <p>Le preguntas a ChatGPT, copias la respuesta, la pegas en otro lado, formateas, ajustas... y repites. Cada tarea "automatizada" te toma lo mismo que hacerla a mano.</p>
                 </div>
-                <div class="terminal-wrapper fade-in">
-                    <div class="terminal">
-                        <div class="terminal-header">
-                            <div class="terminal-dot red"></div>
-                            <div class="terminal-dot yellow"></div>
-                            <div class="terminal-dot green"></div>
-                            <span style="margin-left: auto; font-size: 12px; color: var(--text-muted);">openclaw — zsh</span>
-                        </div>
-                        <div class="terminal-body">
-                            <div><span class="terminal-prompt">$</span> <span class="terminal-command">npm install -g openclaw</span></div>
-                            <div style="margin-top: 8px;"><span class="terminal-accent">✓</span> OpenClaw installed successfully</div>
-                            <div style="margin-top: 8px;"><span class="terminal-prompt">$</span> <span class="terminal-command">openclaw onboard</span></div>
-                            <div style="margin-top: 8px; color: var(--terminal-teal);">🦞 Welcome to OpenClaw!</div>
-                            <div style="margin-top: 4px; color: var(--text-muted);">Initializing your AI agent...</div>
-                            <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Connecting to Telegram</div>
-                            <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Loading skills from ClawHub</div>
-                            <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Agent ready!</div>
-                            <div style="margin-top: 8px;"><span class="terminal-prompt">$</span> <span class="terminal-command">openclaw gateway start</span></div>
-                            <div style="margin-top: 8px; color: var(--terminal-green);">🟢 Gateway running on port 3000</div>
-                            <div class="ascii-lobster">
-    🦞
-                            </div>
-                        </div>
-                    </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🔒</div>
+                    <h3>Tus datos en la nube de otros</h3>
+                    <p>Cada prompt que escribes alimenta servidores que no controlas. Tu código, tus documentos, tus ideas — todo pasa por APIs de terceros sin que puedas hacer nada al respecto.</p>
                 </div>
+                <div class="problem-card fade-in">
+                    <div class="problem-icon">🧩</div>
+                    <h3>Cero conexión con tus apps</h3>
+                    <p>Tu IA no puede abrir un archivo, mandar un mensaje por Slack, ni mover datos entre apps. Vive en una burbuja de texto sin acceso al mundo real donde ocurre tu trabajo.</p>
+                </div>
+            </div>
+            <div class="problem-transition fade-in">
+                <p>¿Y si tu IA pudiera <span>actuar</span>, no solo responder?<br>Necesitas un <span>agente autónomo</span>.</p>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         ¿QUÉ ES OPENCLAW?
+         THE SOLUTION: OPENCLAW (DARK) — Storytelling: Resolution
          ============================================ -->
     <section class="about">
         <div class="container">
             <div class="section-header fade-in">
-                <div class="section-tag">¿Qué es OpenClaw?</div>
-                <h2 class="section-title">Tu asistente de IA que corre en TU máquina</h2>
+                <div class="section-tag">La solución</div>
+                <h2 class="section-title">OpenClaw: tu agente de IA que corre en TU máquina</h2>
             </div>
             <div class="about-grid">
                 <div class="about-text fade-in">
                     <p>
-                        <strong>OpenClaw</strong> es un agente de IA autónomo open-source que corre en tu computadora (Mac, Windows o Linux). Se conecta a tus apps favoritas y puede ejecutar tareas reales: manejar archivos, controlar el navegador, automatizar flujos y mucho más.
+                        <strong>OpenClaw</strong> no es otro chatbot. Es un agente autónomo open-source que corre en tu computadora y ejecuta tareas reales: maneja archivos, controla el navegador, envía mensajes y automatiza flujos completos.
                     </p>
                     <p>
-                        Todo con tu propia API key (Claude, OpenAI, o modelos locales vía Ollama). <strong>Tus datos nunca salen de tu máquina</strong> a menos que tú lo decidas.
+                        Usa tu propia API key (Claude, OpenAI, o modelos locales vía Ollama). <strong>Tus datos nunca salen de tu máquina</strong> a menos que tú lo decidas. Y se conecta a las apps que ya usas:
                     </p>
-                    
+
                     <div class="channels-grid">
                         <div class="channel-item">
                             <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp">
@@ -972,45 +1158,95 @@
     </section>
 
     <!-- ============================================
-         AGENDA
+         TERMINAL DEMO (LIGHT) — Storytelling: Proof of simplicity
          ============================================ -->
-    <section class="agenda">
+    <section class="terminal-section section-light">
         <div class="container">
-            <div class="section-header fade-in">
-                <div class="section-tag">Agenda del Taller</div>
-                <h2 class="section-title">¿Qué vas a aprender?</h2>
-            </div>
-            <div class="agenda-cards">
-                <div class="agenda-card fade-in">
-                    <span class="agenda-number">BLOQUE 1</span>
-                    <div class="agenda-icon">🔧</div>
-                    <h3>Instalación básica</h3>
-                    <p>Desde cero: Node.js, npm install, openclaw onboard, gateway, primera conexión desde terminal. Todo paso a paso.</p>
+            <div class="terminal-section-grid">
+                <div class="terminal-section-text fade-in">
+                    <h2>Instalación en <span style="color: var(--accent);">3 comandos</span></h2>
+                    <p>
+                        No necesitas ser experto. Si sabes abrir una terminal, puedes tener tu agente corriendo en menos de 5 minutos.
+                    </p>
+                    <p>
+                        Después del taller, tendrás tu propio agente conectado a tus apps y listo para automatizar tus tareas diarias.
+                    </p>
+                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
+                        <span class="tech-pill tech-pill--green">Node.js 22+</span>
+                        <span class="tech-pill tech-pill--red">NPM Global</span>
+                        <span class="tech-pill tech-pill--gray">Tu API Key</span>
+                    </div>
                 </div>
-                <div class="agenda-card fade-in">
-                    <span class="agenda-number">BLOQUE 2</span>
-                    <div class="agenda-icon">🔒</div>
-                    <h3>Medidas de seguridad</h3>
-                    <p>Permisos, modo sandbox, tool policies, riesgos reales de seguridad. Protege tu instancia de prompt injection y data exfiltration.</p>
-                </div>
-                <div class="agenda-card fade-in">
-                    <span class="agenda-number">BLOQUE 3</span>
-                    <div class="agenda-icon">🔌</div>
-                    <h3>Conexión de servicios</h3>
-                    <p>Conectar Claude API o GPT, integrar Slack o Telegram, instalar skills desde ClawHub, casos de uso reales.</p>
+                <div class="terminal-wrapper fade-in">
+                    <div class="terminal">
+                        <div class="terminal-header">
+                            <div class="terminal-dot red"></div>
+                            <div class="terminal-dot yellow"></div>
+                            <div class="terminal-dot green"></div>
+                            <span style="margin-left: auto; font-size: 12px; color: var(--text-muted);">openclaw — zsh</span>
+                        </div>
+                        <div class="terminal-body">
+                            <div><span class="terminal-prompt">$</span> <span class="terminal-command">npm install -g openclaw</span></div>
+                            <div style="margin-top: 8px;"><span class="terminal-accent">✓</span> OpenClaw installed successfully</div>
+                            <div style="margin-top: 8px;"><span class="terminal-prompt">$</span> <span class="terminal-command">openclaw onboard</span></div>
+                            <div style="margin-top: 8px; color: var(--terminal-teal);">🦞 Welcome to OpenClaw!</div>
+                            <div style="margin-top: 4px; color: var(--text-muted);">Initializing your AI agent...</div>
+                            <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Connecting to Telegram</div>
+                            <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Loading skills from ClawHub</div>
+                            <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Agent ready!</div>
+                            <div style="margin-top: 8px;"><span class="terminal-prompt">$</span> <span class="terminal-command">openclaw gateway start</span></div>
+                            <div style="margin-top: 8px; color: var(--terminal-green);">🟢 Gateway running on port 3000</div>
+                            <div class="ascii-lobster">
+    🦞
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         INSTRUCTOR
+         AGENDA (DARK) — Storytelling: What you'll gain
          ============================================ -->
-    <section class="instructor">
+    <section class="agenda" style="background: var(--bg-primary);">
         <div class="container">
             <div class="section-header fade-in">
-                <div class="section-tag">Instructor</div>
-                <h2 class="section-title">Conoce a tu guía</h2>
+                <div class="section-tag">Agenda del Taller</div>
+                <h2 class="section-title">En 60 minutos vas a tener tu agente corriendo</h2>
+                <p class="section-subtitle" style="color: var(--text-secondary);">No es teoría. Es paso a paso, en vivo, hasta que funcione.</p>
+            </div>
+            <div class="agenda-cards">
+                <div class="agenda-card fade-in">
+                    <span class="agenda-number">BLOQUE 1</span>
+                    <div class="agenda-icon">🔧</div>
+                    <h3>Instalación desde cero</h3>
+                    <p>Node.js, npm install, openclaw onboard, gateway, primera conexión desde terminal. Sin asumir nada — todo paso a paso contigo.</p>
+                </div>
+                <div class="agenda-card fade-in">
+                    <span class="agenda-number">BLOQUE 2</span>
+                    <div class="agenda-icon">🔒</div>
+                    <h3>Seguridad real</h3>
+                    <p>Permisos, modo sandbox, tool policies, riesgos reales. Protege tu instancia de prompt injection y data exfiltration antes de conectar cualquier servicio.</p>
+                </div>
+                <div class="agenda-card fade-in">
+                    <span class="agenda-number">BLOQUE 3</span>
+                    <div class="agenda-icon">🔌</div>
+                    <h3>Conectar y automatizar</h3>
+                    <p>Claude API o GPT, Slack o Telegram, skills desde ClawHub. Al final del bloque, tu agente estará listo para trabajar por ti.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         INSTRUCTOR (LIGHT) — Storytelling: Credibility
+         ============================================ -->
+    <section class="instructor section-light">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-tag" style="background: rgba(255, 69, 69, 0.08); border-color: rgba(255, 69, 69, 0.2); color: var(--accent);">Tu instructor</div>
+                <h2 class="section-title" style="color: var(--light-text);">No es un tutorial de YouTube — es un taller con alguien que lo usa en producción</h2>
             </div>
             <div class="instructor-grid">
                 <div class="instructor-profile fade-in">
@@ -1024,7 +1260,7 @@
                             <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram">
                         </a>
                         <a href="https://tiktok.com/@eduaguad" target="_blank" class="social-link" aria-label="TikTok">
-                            <img src="https://cdn.simpleicons.org/tiktok/000000" alt="TikTok" style="filter: invert(1);">
+                            <img src="https://cdn.simpleicons.org/tiktok/000000" alt="TikTok">
                         </a>
                     </div>
                 </div>
@@ -1062,7 +1298,7 @@
                             <span>n8n</span>
                         </div>
                         <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/tailscale/141414" alt="Tailscale" style="filter: invert(1);">
+                            <img src="https://cdn.simpleicons.org/tailscale/141414" alt="Tailscale">
                             <span>Tailscale</span>
                         </div>
                         <div class="tech-item">
@@ -1104,13 +1340,13 @@
     </section>
 
     <!-- ============================================
-         REGISTRO
+         REGISTRO (DARK) — Storytelling: Call to action
          ============================================ -->
     <section class="register">
         <div class="container">
             <div class="register-card fade-in">
-                <h2>¿Listo para tener tu propio agente de IA?</h2>
-                <p>Únete al taller gratuito y da el primer paso hacia la automatización inteligente.</p>
+                <h2>Deja de chatear con IA.<br>Ponla a trabajar.</h2>
+                <p>60 minutos. Un agente autónomo corriendo en tu máquina. Gratis.</p>
                 <div class="register-meta">
                     <span>📅 Martes 31 de marzo</span>
                     <span>🕐 8:00 – 9:00 PM</span>
@@ -1189,13 +1425,13 @@
             });
         });
 
-        // Efecto de typing en terminal (opcional - para darle vida)
+        // Efecto de typing en terminal
         const terminalCommands = document.querySelectorAll('.terminal-command');
         terminalCommands.forEach((cmd, index) => {
             const text = cmd.textContent;
             cmd.textContent = '';
             let i = 0;
-            
+
             setTimeout(() => {
                 const typeInterval = setInterval(() => {
                     if (i < text.length) {
