@@ -234,15 +234,26 @@
         .hero-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 60px;
+            gap: 40px;
             align-items: center;
             position: relative;
             z-index: 1;
         }
 
+        /* En mobile: imagen arriba, texto abajo */
+        .hero-visual {
+            order: -1;
+        }
+
         @media (min-width: 1024px) {
             .hero-grid {
                 grid-template-columns: 1.2fr 1fr;
+                gap: 60px;
+            }
+
+            /* En desktop: texto primero, imagen después */
+            .hero-visual {
+                order: 0;
             }
         }
 
