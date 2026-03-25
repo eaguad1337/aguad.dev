@@ -31,15 +31,9 @@
             --border: rgba(255, 255, 255, 0.08);
             --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(255, 69, 69, 0.15) 0%, transparent 50%),
                                radial-gradient(ellipse at 100% 100%, rgba(0, 212, 170, 0.08) 0%, transparent 40%);
-
-            /* Light section palette */
             --light-bg: #F8F8FB;
-            --light-bg-alt: #EEEEF3;
-            --light-card: #FFFFFF;
-            --light-card-hover: #F0F0F5;
             --light-text: #1A1A2E;
             --light-text-secondary: #4A4A5A;
-            --light-text-muted: #8888A0;
             --light-border: rgba(0, 0, 0, 0.08);
         }
 
@@ -83,21 +77,81 @@
         }
 
         /* ============================================
-           LIGHT SECTION BASE
+           NAVBAR
            ============================================ */
-        .section-light {
-            background: var(--light-bg);
-            color: var(--light-text);
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 24px;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s ease;
         }
 
-        .section-light .section-title {
-            color: var(--light-text);
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
         }
 
-        .section-light .section-tag {
-            background: rgba(255, 69, 69, 0.08);
-            border-color: rgba(255, 69, 69, 0.2);
-            color: var(--accent);
+        .navbar-logo {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .navbar-links {
+            display: none;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-links {
+                display: flex;
+            }
+        }
+
+        .navbar-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .navbar-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .navbar-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            background: var(--accent);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
         }
 
         /* ============================================
@@ -216,7 +270,7 @@
             align-items: center;
             background: var(--gradient-hero);
             position: relative;
-            padding-top: 80px;
+            padding-top: 100px;
             padding-bottom: 80px;
         }
 
@@ -240,7 +294,6 @@
             z-index: 1;
         }
 
-        /* En mobile: imagen arriba, texto abajo */
         .hero-visual {
             order: -1;
         }
@@ -251,7 +304,6 @@
                 gap: 60px;
             }
 
-            /* En desktop: texto primero, imagen después */
             .hero-visual {
                 order: 0;
             }
@@ -308,7 +360,7 @@
             color: var(--accent);
         }
 
-        /* Countdown Timer Styles */
+        /* Countdown */
         .countdown {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -329,7 +381,7 @@
             display: block;
             font-size: clamp(28px, 5vw, 40px);
             font-weight: 800;
-            color: var(--accent);
+            color: var(--text-primary);
             line-height: 1;
             margin-bottom: 4px;
         }
@@ -377,537 +429,119 @@
         }
 
         /* ============================================
-           PROBLEM / PAIN SECTION (LIGHT)
+           STATS — CREDIBILIDAD
            ============================================ */
-        .problem {
-            position: relative;
-            overflow: hidden;
+        .stats-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
         }
 
-        .problem::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255, 69, 69, 0.3), transparent);
-        }
-
-        .problem-grid {
+        .stats-row {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 48px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         @media (min-width: 768px) {
-            .problem-grid {
-                grid-template-columns: repeat(3, 1fr);
+            .stats-row {
+                grid-template-columns: repeat(4, 1fr);
             }
-        }
-
-        .problem-card {
-            padding: 36px 28px;
-            background: var(--light-card);
-            border: 1px solid var(--light-border);
-            border-radius: 20px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .problem-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-        }
-
-        .problem-icon {
-            width: 56px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 69, 69, 0.08);
-            border-radius: 16px;
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        .problem-card h3 {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: var(--light-text);
-        }
-
-        .problem-card p {
-            font-size: 15px;
-            color: var(--light-text-secondary);
-            line-height: 1.7;
-        }
-
-        .problem-lead {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 60px;
-        }
-
-        .problem-lead p {
-            font-size: 20px;
-            color: var(--light-text-secondary);
-            line-height: 1.8;
-        }
-
-        .problem-lead strong {
-            color: var(--accent);
-        }
-
-        /* Before/After Comparison Table */
-        .comparison-table {
-            margin: 60px auto;
-            max-width: 800px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            overflow: hidden;
-        }
-
-        .comparison-header {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            background: var(--bg-secondary);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .comparison-header-cell {
-            padding: 20px 24px;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .comparison-header-cell:first-child {
-            color: var(--accent);
-            border-right: 1px solid var(--border);
-        }
-
-        .comparison-header-cell:last-child {
-            color: var(--terminal-green);
-        }
-
-        .comparison-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .comparison-row:last-child {
-            border-bottom: none;
-        }
-
-        .comparison-row:nth-child(even) {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .comparison-cell {
-            padding: 20px 24px;
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        .comparison-cell:first-child {
-            color: var(--text-secondary);
-            border-right: 1px solid var(--border);
-        }
-
-        .comparison-cell:last-child {
-            color: var(--text-primary);
-        }
-
-        .comparison-icon {
-            font-weight: 700;
-            margin-right: 8px;
-        }
-
-        .comparison-icon.x {
-            color: var(--accent);
-        }
-
-        .comparison-icon.check {
-            color: var(--terminal-green);
-        }
-
-        /* Mobile: convert to list */
-        @media (max-width: 640px) {
-            .comparison-header {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-header-cell:first-child {
-                border-right: none;
-                border-bottom: 1px solid var(--border);
-            }
-
-            .comparison-row {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-cell:first-child {
-                border-right: none;
-                border-bottom: 1px dashed var(--border);
-                padding-bottom: 12px;
-                margin-bottom: 12px;
-            }
-
-            .comparison-row {
-                padding: 20px 0;
-            }
-        }
-
-        .problem-transition {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid var(--light-border);
-        }
-
-        .problem-transition p {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--light-text);
-            line-height: 1.5;
-        }
-
-        .problem-transition span {
-            color: var(--accent);
-        }
-
-        /* ============================================
-           SOLUTION / ABOUT (DARK)
-           ============================================ */
-        .about {
-            background: var(--bg-secondary);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        @media (min-width: 1024px) {
-            .about-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .about-text {
-            font-size: 18px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-        }
-
-        .channels-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 32px;
-        }
-
-        .channel-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 20px 12px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .channel-item:hover {
-            background: var(--bg-card-hover);
-            transform: translateY(-4px);
-            border-color: rgba(255, 69, 69, 0.3);
-        }
-
-        .channel-item img {
-            width: 32px;
-            height: 32px;
-            filter: grayscale(100%) brightness(1.2);
-            transition: filter 0.3s ease;
-        }
-
-        .channel-item:hover img {
-            filter: grayscale(0%) brightness(1);
-        }
-
-        .channel-item span {
-            font-size: 12px;
-            font-weight: 500;
-            color: var(--text-muted);
-        }
-
-        .stats-bar {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 32px;
-            margin-top: 48px;
-            padding: 24px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
         }
 
         .stat-item {
-            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
         }
 
         .stat-value {
-            font-size: 28px;
-            font-weight: 800;
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+
+        .stat-value .accent {
             color: var(--accent);
         }
 
         .stat-label {
             font-size: 14px;
-            color: var(--text-muted);
+            color: var(--text-secondary);
+            line-height: 1.4;
         }
 
         /* ============================================
-           TERMINAL SECTION (LIGHT)
+           AGENDA — MINIMAL
            ============================================ */
-        .terminal-section {
-            padding: 100px 0;
-        }
-
-        .terminal-section-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        @media (min-width: 1024px) {
-            .terminal-section-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        .terminal-section-text h2 {
-            font-size: clamp(28px, 4vw, 40px);
-            font-weight: 800;
-            margin-bottom: 20px;
+        .agenda {
+            background: var(--light-bg);
             color: var(--light-text);
         }
 
-        .terminal-section-text p {
-            font-size: 18px;
-            color: var(--light-text-secondary);
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .terminal-wrapper {
-            max-width: 600px;
-        }
-
-        .terminal {
-            background: #1A1A2E;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
-        }
-
-        .terminal-header {
+        .agenda-list {
+            max-width: 700px;
+            margin: 0 auto;
             display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.03);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            flex-direction: column;
+            gap: 40px;
         }
 
-        .terminal-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-
-        .terminal-dot.red { background: #FF5F57; }
-        .terminal-dot.yellow { background: #FFBD2E; }
-        .terminal-dot.green { background: #28CA42; }
-
-        .terminal-body {
-            padding: 24px;
-            font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-            font-size: 13px;
-            line-height: 1.8;
-            color: #B4B4BE;
-        }
-
-        .terminal-prompt {
-            color: var(--terminal-green);
-        }
-
-        .terminal-accent {
-            color: var(--accent);
-        }
-
-        .terminal-command {
-            color: #FFFFFF;
-        }
-
-        .ascii-lobster {
-            color: var(--accent);
-            font-size: 11px;
-            line-height: 1.4;
-            margin-top: 16px;
-            opacity: 0.8;
-        }
-
-        .tech-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
-            border-radius: 100px;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .tech-pill--green {
-            background: rgba(0, 212, 170, 0.08);
-            border: 1px solid rgba(0, 212, 170, 0.2);
-            color: #00996B;
-        }
-
-        .tech-pill--red {
-            background: rgba(255, 69, 69, 0.08);
-            border: 1px solid rgba(255, 69, 69, 0.2);
-            color: var(--accent);
-        }
-
-        .tech-pill--gray {
-            background: rgba(100, 100, 120, 0.08);
-            border: 1px solid rgba(100, 100, 120, 0.2);
-            color: var(--light-text-secondary);
-        }
-
-        /* ============================================
-           AGENDA (DARK)
-           ============================================ */
-        .agenda-cards {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 24px;
-        }
-
-        @media (min-width: 768px) {
-            .agenda-cards {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        .agenda-card {
-            padding: 32px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .agenda-card:hover {
-            background: var(--bg-card-hover);
-            transform: translateY(-8px);
-            border-color: rgba(255, 69, 69, 0.2);
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        }
-
-        .agenda-icon {
-            width: 56px;
-            height: 56px;
+        .agenda-item {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 69, 69, 0.1);
-            border: 1px solid rgba(255, 69, 69, 0.2);
-            border-radius: 16px;
-            font-size: 28px;
-            margin-bottom: 20px;
+            align-items: baseline;
+            gap: 16px;
         }
 
-        .agenda-card h3 {
+        .agenda-arrow {
             font-size: 20px;
+            color: var(--accent);
             font-weight: 700;
-            margin-bottom: 12px;
+            flex-shrink: 0;
         }
 
-        .agenda-card p {
-            font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        .agenda-number {
-            display: inline-block;
-            padding: 4px 12px;
-            background: var(--accent);
-            color: white;
-            font-size: 12px;
+        .agenda-item-text h3 {
+            font-size: clamp(20px, 3vw, 24px);
             font-weight: 700;
-            border-radius: 100px;
-            margin-bottom: 16px;
+            color: var(--light-text);
+            margin-bottom: 4px;
         }
 
-        /* Risk Hook Quote */
-        .risk-hook {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 69, 69, 0.08);
-            border-left: 4px solid var(--accent);
-            border-radius: 0 12px 12px 0;
-            font-style: italic;
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.7;
+        .agenda-item-text p {
+            font-size: 16px;
+            color: var(--light-text-secondary);
         }
 
         /* ============================================
-           INSTRUCTOR (LIGHT)
+           INSTRUCTOR (DARK)
            ============================================ */
-        .instructor-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-            align-items: start;
+        .instructor {
+            background: var(--bg-secondary);
         }
 
-        @media (min-width: 1024px) {
-            .instructor-grid {
-                grid-template-columns: 300px 1fr;
-            }
-        }
-
-        .instructor-profile {
+        .instructor-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
             text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .instructor-avatar {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 24px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             overflow: hidden;
-            border: 4px solid var(--accent);
+            border: 3px solid var(--accent);
             box-shadow: 0 0 40px rgba(255, 69, 69, 0.15);
         }
 
@@ -920,15 +554,20 @@
         .instructor-name {
             font-size: 28px;
             font-weight: 800;
-            margin-bottom: 8px;
-            color: var(--light-text);
+            color: var(--text-primary);
         }
 
         .instructor-title {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--accent);
             font-weight: 600;
-            margin-bottom: 20px;
+        }
+
+        .instructor-bio {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 500px;
         }
 
         .instructor-social {
@@ -943,8 +582,8 @@
             justify-content: center;
             width: 44px;
             height: 44px;
-            background: var(--light-card);
-            border: 1px solid var(--light-border);
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             border-radius: 12px;
             transition: all 0.3s ease;
         }
@@ -960,261 +599,89 @@
             height: 20px;
         }
 
-        .instructor-bio {
-            font-size: 17px;
-            color: var(--light-text-secondary);
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        .tech-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-
-        @media (min-width: 640px) {
-            .tech-grid {
-                grid-template-columns: repeat(6, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .tech-grid {
-                grid-template-columns: repeat(8, 1fr);
-            }
-        }
-
-        .tech-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            padding: 16px 8px;
-            background: var(--light-card);
-            border: 1px solid var(--light-border);
-            border-radius: 12px;
-            transition: all 0.3s ease;
-        }
-
-        .tech-item:hover {
-            background: var(--light-card-hover);
-            transform: translateY(-4px);
-            border-color: rgba(255, 69, 69, 0.2);
-        }
-
-        .tech-item img {
-            width: 28px;
-            height: 28px;
-            transition: filter 0.3s ease;
-        }
-
-        .tech-item span {
-            font-size: 10px;
-            font-weight: 500;
-            color: var(--light-text-muted);
-            text-align: center;
-        }
-
-        /* ============================================
-           FAQ SECTION
-           ============================================ */
-        .faq {
-            background: var(--light-bg);
-        }
-
-        .faq-list {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: var(--light-card);
-            border: 1px solid var(--light-border);
-            border-radius: 16px;
-            margin-bottom: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .faq-question {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 100%;
-            padding: 24px;
-            background: none;
-            border: none;
-            font-family: inherit;
-            font-size: 17px;
-            font-weight: 600;
-            color: var(--light-text);
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .faq-question:hover {
-            color: var(--accent);
-        }
-
-        .faq-question-icon {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-            margin-left: 16px;
-            transition: transform 0.3s ease;
-            color: var(--light-text-muted);
-        }
-
-        .faq-item.active .faq-question-icon {
-            transform: rotate(45deg);
-            color: var(--accent);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-            padding: 0 24px 24px;
-        }
-
-        .faq-answer p {
-            color: var(--light-text-secondary);
-            font-size: 15px;
-            line-height: 1.8;
-        }
-
-        /* ============================================
-           SOCIAL PROOF BANNER
-           ============================================ */
-        .proof-banner {
-            padding: 60px 0;
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-        }
-
-        .proof-items {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 48px;
-        }
-
-        .proof-item {
-            text-align: center;
-        }
-
-        .proof-value {
-            font-size: 36px;
-            font-weight: 800;
-            color: var(--accent);
-        }
-
-        .proof-label {
-            font-size: 14px;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
         /* ============================================
            REGISTRO
            ============================================ */
         .register {
-            padding: 120px 0;
-            background: var(--gradient-hero);
-            position: relative;
-        }
-
-        .register-card {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 24px;
+            padding: 100px 0;
+            background: var(--bg-primary);
             text-align: center;
             position: relative;
             overflow: hidden;
         }
 
-        .register-card::before {
+        .register::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--terminal-teal));
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 69, 69, 0.12) 0%, transparent 70%);
+            pointer-events: none;
         }
 
-        .register-card h2 {
-            font-size: clamp(28px, 4vw, 40px);
-            font-weight: 800;
-            margin-bottom: 16px;
+        .register-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .register-card p {
-            font-size: 18px;
-            color: var(--text-secondary);
+        .register h2 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 900;
+            line-height: 1.1;
             margin-bottom: 32px;
+            letter-spacing: -0.02em;
         }
 
         .register-meta {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 16px;
+            gap: 12px;
             margin-bottom: 40px;
         }
 
         .register-meta span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 18px;
-            background: var(--bg-secondary);
-            border-radius: 100px;
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-
-        .register-note {
-            margin-top: 24px;
             font-size: 14px;
             color: var(--text-muted);
+        }
+
+        .register-meta span:not(:last-child)::after {
+            content: '·';
+            margin-left: 12px;
+        }
+
+        .typeform-wrapper {
+            max-width: 620px;
+            margin: 0 auto;
+            min-height: 400px;
         }
 
         /* ============================================
            FOOTER
            ============================================ */
         footer {
-            padding: 60px 0;
+            padding: 48px 0;
             background: var(--bg-primary);
             border-top: 1px solid var(--border);
             text-align: center;
         }
 
         .footer-logo {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
         }
 
         .footer-social {
             display: flex;
             justify-content: center;
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: 12px;
+            margin-bottom: 16px;
         }
 
         .footer-social .social-link {
@@ -1223,7 +690,7 @@
         }
 
         .footer-info {
-            font-size: 15px;
+            font-size: 14px;
             color: var(--text-muted);
         }
 
@@ -1236,7 +703,7 @@
             }
 
             .hero {
-                padding-top: 40px;
+                padding-top: 80px;
                 padding-bottom: 40px;
                 min-height: auto;
             }
@@ -1257,25 +724,12 @@
                 font-size: 9px;
             }
 
-            .channels-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .tech-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
             .register-card {
                 padding: 40px 24px;
             }
 
-            .terminal-body {
-                font-size: 11px;
-                padding: 16px;
-            }
-
-            .proof-items {
-                gap: 32px;
+            .stats-section {
+                padding: 60px 0;
             }
         }
     </style>
@@ -1283,16 +737,32 @@
 <body>
 
     <!-- ============================================
-         HERO SECTION (DARK)
+         NAVBAR
          ============================================ -->
-    <section class="hero">
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="navbar-logo">eduaguad 🦞</a>
+            <ul class="navbar-links">
+                <li><a href="#taller">Taller</a></li>
+                <li><a href="#agenda">Agenda</a></li>
+                <li><a href="#instructor">Instructor</a></li>
+                <li><a href="#registro">Registro</a></li>
+            </ul>
+            <a href="https://form.typeform.com/to/rPmanD7l" class="navbar-cta">Registrarme →</a>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO (DARK)
+         ============================================ -->
+    <section class="hero" id="taller">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content fade-in">
                     <div class="badge">Taller Online Gratuito</div>
                     <h1>Tu primer <span>agente de IA</span> autónomo en producción</h1>
                     <p class="hero-subtitle">
-                        Mientras otros solo chatean con IA, tú vas a tener un agente que trabaja por ti: maneja archivos, controla apps y automatiza tu flujo de trabajo.
+                        Mientras otros chatean, tú vas a tener un agente que trabaja por ti.
                     </p>
                     <div class="hero-meta">
                         <div class="hero-meta-item">
@@ -1327,10 +797,10 @@
 
                     <div class="hero-cta">
                         <a href="https://form.typeform.com/to/rPmanD7l" class="btn btn-primary btn-large">
-                            Quiero instalar mi agente este martes →
+                            Quiero mi cupo gratis →
                         </a>
                     </div>
-                    <p class="hero-social-proof">🔥 +120 personas ya se registraron · Cupos limitados</p>
+                    <!-- <p class="hero-social-proof">🔥 +120 personas ya se registraron · Cupos limitados</p> -->
                 </div>
                 <div class="hero-visual fade-in">
                     <img src="hero-lobster.png" alt="OpenClaw Agent" class="hero-image">
@@ -1340,125 +810,61 @@
     </section>
 
     <!-- ============================================
-         THE PROBLEM (LIGHT) — Storytelling: Pain
+         STATS — CREDIBILIDAD
          ============================================ -->
-    <section class="problem section-light">
+    <section class="stats-section">
         <div class="container">
-            <div class="problem-lead fade-in">
-                <div class="section-tag" style="background: rgba(255, 69, 69, 0.08); border-color: rgba(255, 69, 69, 0.2); color: var(--accent);">El problema</div>
-                <h2 class="section-title" style="color: var(--light-text);">La IA que usas hoy no trabaja por ti</h2>
-                <p>
-                    Copias y pegas respuestas de ChatGPT. Escribes el mismo prompt 10 veces. Saltas entre 5 tabs para hacer una tarea simple.
-                    <strong>Eso no es automatización — es trabajo manual con pasos extra.</strong>
-                </p>
-            </div>
-            <div class="problem-grid">
-                <div class="problem-card fade-in">
-                    <div class="problem-icon">🔄</div>
-                    <h3>Copiar y pegar infinito</h3>
-                    <p>Le preguntas a ChatGPT, copias la respuesta, la pegas en otro lado, formateas, ajustas... y repites. Cada tarea "automatizada" te toma lo mismo que hacerla a mano.</p>
+            <div class="stats-row fade-in">
+                <div class="stat-item">
+                    <div class="stat-value">310K<span class="accent">+</span></div>
+                    <div class="stat-label">Stars en GitHub<br>en solo 4 meses</div>
                 </div>
-                <div class="problem-card fade-in">
-                    <div class="problem-icon">🔒</div>
-                    <h3>Tus datos en la nube de otros</h3>
-                    <p>Cada prompt que escribes alimenta servidores que no controlas. Tu código, tus documentos, tus ideas — todo pasa por APIs de terceros sin que puedas hacer nada al respecto.</p>
+                <div class="stat-item">
+                    <div class="stat-value">Top <span class="accent">10</span></div>
+                    <div class="stat-label">Proyecto más popular<br>de GitHub global</div>
                 </div>
-                <div class="problem-card fade-in">
-                    <div class="problem-icon">🧩</div>
-                    <h3>Cero conexión con tus apps</h3>
-                    <p>Tu IA no puede abrir un archivo, mandar un mensaje por Slack, ni mover datos entre apps. Vive en una burbuja de texto sin acceso al mundo real donde ocurre tu trabajo.</p>
+                <div class="stat-item">
+                    <div class="stat-value">100<span class="accent">%</span></div>
+                    <div class="stat-label">Open source<br>y gratuito</div>
                 </div>
-            </div>
-
-            <!-- Before/After Comparison Table -->
-            <div class="comparison-table fade-in">
-                <div class="comparison-header">
-                    <div class="comparison-header-cell">❌ Sin OpenClaw</div>
-                    <div class="comparison-header-cell">✅ Con OpenClaw</div>
+                <div class="stat-item">
+                    <div class="stat-value">60 <span class="accent">min</span></div>
+                    <div class="stat-label">Y tu agente<br>está corriendo</div>
                 </div>
-                <div class="comparison-row">
-                    <div class="comparison-cell"><span class="comparison-icon x">❌</span>Ejecutas tareas a mano</div>
-                    <div class="comparison-cell"><span class="comparison-icon check">✅</span>Tu agente las corre mientras duermes</div>
-                </div>
-                <div class="comparison-row">
-                    <div class="comparison-cell"><span class="comparison-icon x">❌</span>Pagas SaaS por cada app</div>
-                    <div class="comparison-cell"><span class="comparison-icon check">✅</span>Un agente conecta todo, gratis</div>
-                </div>
-                <div class="comparison-row">
-                    <div class="comparison-cell"><span class="comparison-icon x">❌</span>Tus datos pasan por APIs de terceros</div>
-                    <div class="comparison-cell"><span class="comparison-icon check">✅</span>Todo corre en tu máquina</div>
-                </div>
-                <div class="comparison-row">
-                    <div class="comparison-cell"><span class="comparison-icon x">❌</span>Solo responde cuando le preguntas</div>
-                    <div class="comparison-cell"><span class="comparison-icon check">✅</span>Actúa de forma proactiva y autónoma</div>
-                </div>
-            </div>
-
-            <div class="problem-transition fade-in">
-                <p>¿Y si tu IA pudiera <span>actuar</span>, no solo responder?<br>Necesitas un <span>agente autónomo</span>.</p>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         THE SOLUTION: OPENCLAW (DARK) — Storytelling: Resolution
+         AGENDA (DARK) — MINIMAL
          ============================================ -->
-    <section class="about">
+    <section class="agenda" id="agenda">
         <div class="container">
             <div class="section-header fade-in">
-                <div class="section-tag">La solución</div>
-                <h2 class="section-title">OpenClaw: tu agente de IA que corre en TU máquina</h2>
+                <div class="section-tag" style="background: rgba(255, 69, 69, 0.08); border-color: rgba(255, 69, 69, 0.2); color: var(--accent);">Agenda del Taller</div>
+                <h2 class="section-title" style="color: var(--light-text);">En 60 minutos vas a tener tu agente corriendo</h2>
+                <p class="section-subtitle" style="color: var(--light-text-secondary);">No es teoría. Es paso a paso.</p>
             </div>
-            <div class="about-grid">
-                <div class="about-text fade-in">
-                    <p>
-                        <strong>OpenClaw</strong> no es otro chatbot. Es un agente autónomo open-source que corre en tu computadora y ejecuta tareas reales: maneja archivos, controla el navegador, envía mensajes y automatiza flujos completos.
-                    </p>
-                    <p>
-                        Usa tu propia API key (Claude, OpenAI, o modelos locales vía Ollama). <strong>Tus datos nunca salen de tu máquina</strong> a menos que tú lo decidas. Y se conecta a las apps que ya usas:
-                    </p>
-
-                    <div class="channels-grid">
-                        <div class="channel-item">
-                            <img src="https://cdn.simpleicons.org/whatsapp/25D366" alt="WhatsApp">
-                            <span>WhatsApp</span>
-                        </div>
-                        <div class="channel-item">
-                            <img src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram">
-                            <span>Telegram</span>
-                        </div>
-                        <div class="channel-item">
-                            <img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord">
-                            <span>Discord</span>
-                        </div>
-                        <div class="channel-item">
-                            <img src="slack.svg" alt="Slack">
-                            <span>Slack</span>
-                        </div>
-                        <div class="channel-item">
-                            <img src="https://cdn.simpleicons.org/signal/3B45F6" alt="Signal">
-                            <span>Signal</span>
-                        </div>
-                        <div class="channel-item">
-                            <img src="https://cdn.simpleicons.org/imessage/25D366" alt="iMessage">
-                            <span>iMessage</span>
-                        </div>
+            <div class="agenda-list">
+                <div class="agenda-item fade-in">
+                    <span class="agenda-arrow">→</span>
+                    <div class="agenda-item-text">
+                        <h3>Instalación desde cero</h3>
+                        <p>Node.js, npm, gateway: todo en vivo</p>
                     </div>
                 </div>
-                <div class="fade-in">
-                    <div class="stats-bar">
-                        <div class="stat-item">
-                            <div class="stat-value">310K+</div>
-                            <div class="stat-label">GitHub Stars</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">MIT</div>
-                            <div class="stat-label">License</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">Node 22+</div>
-                            <div class="stat-label">Runtime</div>
-                        </div>
+                <div class="agenda-item fade-in">
+                    <span class="agenda-arrow">→</span>
+                    <div class="agenda-item-text">
+                        <h3>Seguridad real</h3>
+                        <p>Permisos, sandbox y protección desde el inicio</p>
+                    </div>
+                </div>
+                <div class="agenda-item fade-in">
+                    <span class="agenda-arrow">→</span>
+                    <div class="agenda-item-text">
+                        <h3>Conectar y automatizar</h3>
+                        <p>Slack, Telegram, skills reales de ClawHub</p>
                     </div>
                 </div>
             </div>
@@ -1466,288 +872,50 @@
     </section>
 
     <!-- ============================================
-         TERMINAL DEMO (LIGHT) — Storytelling: Proof of simplicity
+         INSTRUCTOR (DARK)
          ============================================ -->
-    <section class="terminal-section section-light">
-        <div class="container">
-            <div class="terminal-section-grid">
-                <div class="terminal-section-text fade-in">
-                    <h2>Instalación en <span style="color: var(--accent);">3 comandos</span></h2>
-                    <p>
-                        No necesitas ser experto. Si sabes abrir una terminal, puedes tener tu agente corriendo en menos de 5 minutos.
-                    </p>
-                    <p>
-                        Después del taller, tendrás tu propio agente conectado a tus apps y listo para automatizar tus tareas diarias.
-                    </p>
-                    <div style="margin-top: 24px; display: flex; gap: 12px; flex-wrap: wrap;">
-                        <span class="tech-pill tech-pill--green">Node.js 22+</span>
-                        <span class="tech-pill tech-pill--red">NPM Global</span>
-                        <span class="tech-pill tech-pill--gray">Tu API Key</span>
-                    </div>
-                </div>
-                <div class="terminal-wrapper fade-in">
-                    <div class="terminal">
-                        <div class="terminal-header">
-                            <div class="terminal-dot red"></div>
-                            <div class="terminal-dot yellow"></div>
-                            <div class="terminal-dot green"></div>
-                            <span style="margin-left: auto; font-size: 12px; color: var(--text-muted);">openclaw — zsh</span>
-                        </div>
-                        <div class="terminal-body">
-                            <div><span class="terminal-prompt">$</span> <span class="terminal-command">npm install -g openclaw</span></div>
-                            <div style="margin-top: 8px;"><span class="terminal-accent">✓</span> OpenClaw installed successfully</div>
-                            <div style="margin-top: 8px;"><span class="terminal-prompt">$</span> <span class="terminal-command">openclaw onboard</span></div>
-                            <div style="margin-top: 8px; color: var(--terminal-teal);">🦞 Welcome to OpenClaw!</div>
-                            <div style="margin-top: 4px; color: var(--text-muted);">Initializing your AI agent...</div>
-                            <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Connecting to Telegram</div>
-                            <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Loading skills from ClawHub</div>
-                            <div style="margin-top: 4px;"><span class="terminal-accent">→</span> Agent ready!</div>
-                            <div style="margin-top: 8px;"><span class="terminal-prompt">$</span> <span class="terminal-command">openclaw gateway start</span></div>
-                            <div style="margin-top: 8px; color: var(--terminal-green);">🟢 Gateway running on port 3000</div>
-                            <div class="ascii-lobster">
-    🦞
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         AGENDA (DARK) — Storytelling: What you'll gain
-         ============================================ -->
-    <section class="agenda" style="background: var(--bg-primary);">
-        <div class="container">
-            <div class="section-header fade-in">
-                <div class="section-tag">Agenda del Taller</div>
-                <h2 class="section-title">En 60 minutos vas a tener tu agente corriendo</h2>
-                <p class="section-subtitle" style="color: var(--text-secondary);">No es teoría. Es paso a paso, en vivo, hasta que funcione.</p>
-            </div>
-            <div class="agenda-cards">
-                <div class="agenda-card fade-in">
-                    <span class="agenda-number">BLOQUE 1</span>
-                    <div class="agenda-icon">🔧</div>
-                    <h3>Instalación desde cero</h3>
-                    <p>Node.js, npm install, openclaw onboard, gateway, primera conexión desde terminal. Sin asumir nada — todo paso a paso contigo.</p>
-                </div>
-                <div class="agenda-card fade-in">
-                    <span class="agenda-number">BLOQUE 2</span>
-                    <div class="agenda-icon">🔒</div>
-                    <h3>Seguridad real</h3>
-                    <p>Permisos, modo sandbox, tool policies, riesgos reales. Protege tu instancia de prompt injection y data exfiltration antes de conectar cualquier servicio.</p>
-                    <div class="risk-hook">
-                        "El propio equipo de OpenClaw advirtió en Discord: 'Si no entiendes cómo correr un comando en terminal, este proyecto es demasiado peligroso para ti.' Yo te voy a mostrar exactamente cómo evitar ese escenario."
-                    </div>
-                </div>
-                <div class="agenda-card fade-in">
-                    <span class="agenda-number">BLOQUE 3</span>
-                    <div class="agenda-icon">🔌</div>
-                    <h3>Conectar y automatizar</h3>
-                    <p>Claude API o GPT, Slack o Telegram, skills desde ClawHub. Al final del bloque, tu agente estará listo para trabajar por ti.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         INSTRUCTOR (LIGHT) — Storytelling: Credibility
-         ============================================ -->
-    <section class="instructor section-light">
+    <section class="instructor" id="instructor">
         <div class="container">
             <div class="section-header fade-in">
                 <div class="section-tag" style="background: rgba(255, 69, 69, 0.08); border-color: rgba(255, 69, 69, 0.2); color: var(--accent);">Tu instructor</div>
-                <h2 class="section-title" style="color: var(--light-text);">No es un tutorial de YouTube — es un taller con alguien que lo usa en producción</h2>
+                <h2 class="section-title">Alguien que lo usa en producción, no en tutoriales</h2>
             </div>
-            <div class="instructor-grid">
-                <div class="instructor-profile fade-in">
-                    <div class="instructor-avatar">
-                        <img src="https://unavatar.io/github/eaguad1337" alt="Eduardo Aguad" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 180 180\'%3E%3Crect fill=\'%23FF4545\' width=\'180\' height=\'180\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'72\' font-family=\'Inter\' font-weight=\'800\'%3EEA%3C/text%3E%3C/svg%3E'">
-                    </div>
-                    <h3 class="instructor-name">Eduardo Aguad</h3>
-                    <p class="instructor-title">CTO @ MEAT Group · Builder · Tech Creator LATAM</p>
-                    <div class="instructor-social">
-                        <a href="https://instagram.com/eaguad" target="_blank" class="social-link" aria-label="Instagram">
-                            <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram">
-                        </a>
-                        <a href="https://tiktok.com/@eduaguad" target="_blank" class="social-link" aria-label="TikTok">
-                            <img src="https://cdn.simpleicons.org/tiktok/000000" alt="TikTok">
-                        </a>
-                    </div>
+            <div class="instructor-layout fade-in">
+                <div class="instructor-avatar">
+                    <img src="https://unavatar.io/github/eaguad1337" alt="Eduardo Aguad" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 180 180\'%3E%3Crect fill=\'%23FF4545\' width=\'180\' height=\'180\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'72\' font-family=\'Inter\' font-weight=\'800\'%3EEA%3C/text%3E%3C/svg%3E'">
                 </div>
-                <div class="fade-in">
-                    <p class="instructor-bio">
-                        Llevo más de una década construyendo infraestructura real para empresas en Chile y LATAM. Cuando vi OpenClaw por primera vez, lo primero que hice fue auditarlo por seguridad antes de instalarlo — eso es exactamente lo que te voy a enseñar a hacer. Soy maintainer del Masonite Framework en GitHub, CTO de MEAT Group (holding de 5 agencias digitales) y especialista en infraestructura cloud y ciberseguridad. Si alguien sabe cómo correr agentes de IA de forma segura en producción, es porque lo hace todos los días.
-                    </p>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/kubernetes/326CE5" alt="Kubernetes">
-                            <span>Kubernetes</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="aws.svg" alt="AWS">
-                            <span>AWS</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="azure.svg" alt="Azure">
-                            <span>Azure</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/docker/2496ED" alt="Docker">
-                            <span>Docker</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/nodedotjs/339933" alt="Node.js">
-                            <span>Node.js</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/laravel/FF2D20" alt="Laravel">
-                            <span>Laravel</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/n8n/FF6D5A" alt="n8n">
-                            <span>n8n</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/tailscale/141414" alt="Tailscale">
-                            <span>Tailscale</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/cloudflare/F38020" alt="Cloudflare">
-                            <span>Cloudflare</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/anthropic/D4A574" alt="Claude">
-                            <span>Claude</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/openai/412991" alt="OpenAI">
-                            <span>OpenAI</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/terraform/7B42BC" alt="Terraform">
-                            <span>Terraform</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/linux/FCC624" alt="Linux">
-                            <span>Linux</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/github/181717" alt="GitHub">
-                            <span>GitHub</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/typescript/3178C6" alt="TypeScript">
-                            <span>TypeScript</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.simpleicons.org/postgresql/4169E1" alt="PostgreSQL">
-                            <span>PostgreSQL</span>
-                        </div>
-                    </div>
+                <h3 class="instructor-name">Eduardo Aguad</h3>
+                <p class="instructor-title">CTO @ MEAT Group · Builder · Tech Creator LATAM</p>
+                <p class="instructor-bio">
+                    CTO de MEAT Group · Maintainer del Masonite Framework en GitHub · Más de una década construyendo infra real en producción.
+                </p>
+                <div class="instructor-social">
+                    <a href="https://instagram.com/eaguad" target="_blank" class="social-link" aria-label="Instagram">
+                        <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram">
+                    </a>
+                    <a href="https://tiktok.com/@eduaguad" target="_blank" class="social-link" aria-label="TikTok">
+                        <img src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok">
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ============================================
-         FAQ SECTION (LIGHT) — Storytelling: Objections
+         REGISTRO (DARK) — CTA FINAL
          ============================================ -->
-    <section class="faq section-light" id="faq">
+    <section class="register" id="registro">
         <div class="container">
-            <div class="section-header fade-in">
-                <div class="section-tag" style="background: rgba(255, 69, 69, 0.08); border-color: rgba(255, 69, 69, 0.2); color: var(--accent);">Preguntas frecuentes</div>
-                <h2 class="section-title" style="color: var(--light-text);">Todo lo que necesitas saber</h2>
-                <p class="section-subtitle" style="color: var(--light-text-secondary);">Respuestas directas a las dudas más comunes.</p>
-            </div>
-            <div class="faq-list">
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        ¿Necesito saber programar para instalar OpenClaw?
-                        <svg class="faq-question-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>No necesitas ser programador, pero sí saber abrir una terminal y copiar comandos. Si sabes instalar Node.js y ejecutar <code>npm install</code>, ya tienes el nivel suficiente. En el taller cubrimos cada paso desde cero, asumiendo que nunca has usado la terminal.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        ¿Es realmente gratis o hay costos ocultos?
-                        <svg class="faq-question-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>OpenClaw es 100% open-source y gratuito (licencia MIT). El taller también es gratis. Lo único que podrías pagar es tu consumo de API si usas Claude u OpenAI — pero puedes usar modelos locales vía Ollama y no pagar nada. Eso lo explico en el taller.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        ¿Mis datos estarán seguros corriendo un agente de IA local?
-                        <svg class="faq-question-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Más seguros que en cualquier SaaS de IA. Con OpenClaw, tus datos nunca salen de tu máquina a menos que tú explícitamente lo configures. No hay servidores de terceros, no hay data mining, no hay filtraciones masivas. En el taller te enseño a configurar tool policies y modo sandbox para que incluso si te hacen prompt injection, el daño sea cero.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        ¿Qué pasa si no puedo asistir en vivo?
-                        <svg class="faq-question-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>El taller se grabará y enviaré el enlace a todos los registrados. Pero recomiendo asistir en vivo porque es interactivo: puedes hacer preguntas en tiempo real y resolver dudas específicas de tu setup. Los que están en vivo terminan con el agente funcionando; los que ven la grabación a veces se quedan atascados.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        ¿Funciona en Windows, Mac o Linux?
-                        <svg class="faq-question-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Funciona en los tres. En el taller usaré Mac/Linux para las demos, pero proporciono los comandos equivalentes para Windows (PowerShell/WSL). La mayoría de los asistentes usan Mac, pero los que usan Windows también salen con su agente funcionando.</p>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        ¿Cuánto tiempo toma tener el agente funcionando después del taller?
-                        <svg class="faq-question-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Si sigues los pasos durante el taller, terminarás los 60 minutos con tu agente corriendo. Después del taller, configurar tu primera automatización (por ejemplo, que te resuma los correos cada mañana) te toma otros 10-15 minutos. El agente base está listo inmediatamente; las automatizaciones personalizadas dependen de tu creatividad.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ============================================
-         REGISTRO (DARK) — Storytelling: Call to action
-         ============================================ -->
-    <section class="register">
-        <div class="container">
-            <div class="register-card fade-in">
-                <h2>Deja de chatear con IA.<br>Ponla a trabajar.</h2>
-                <p>60 minutos. Un agente autónomo corriendo en tu máquina. Gratis.</p>
+            <div class="register-inner fade-in">
+                <h2>Deja de chatear con IA.<br>Ponla a <span style="color: var(--accent);">trabajar.</span></h2>
                 <div class="register-meta">
-                    <span>📅 Martes 31 de marzo</span>
-                    <span>🕐 8:00 – 9:00 PM</span>
-                    <span>🌎 Online</span>
+                    <span>Martes 31 de marzo</span>
+                    <span>8:00 – 9:00 PM</span>
+                    <span>Online y gratuito</span>
                 </div>
-                <a href="https://form.typeform.com/to/rPmanD7l" class="btn btn-primary btn-large">
-                    Registrarme ahora →
-                </a>
-                <p class="register-note">100% gratuito · Online · Cupos limitados</p>
+                <div class="typeform-wrapper">
+                    <iframe data-src="https://form.typeform.com/to/rPmanD7l?typeform-medium=embed-snippet" loading="lazy" style="width:100%; height:500px; border:none; border-radius:16px;"></iframe>
+                </div>
             </div>
         </div>
     </section>
@@ -1763,7 +931,7 @@
                     <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram">
                 </a>
                 <a href="https://tiktok.com/@eduaguad" target="_blank" class="social-link" aria-label="TikTok">
-                    <img src="https://cdn.simpleicons.org/tiktok/000000" alt="TikTok" style="filter: invert(1);">
+                    <img src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok">
                 </a>
             </div>
             <p class="footer-info">
@@ -1776,13 +944,7 @@
          SCRIPTS
          ============================================ -->
     <script>
-        // Animaciones de scroll (fade-in)
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
+        // Fade-in on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1790,17 +952,13 @@
                     observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-        // Trigger initial animation for hero elements
+        // Hero immediate fade-in
         setTimeout(() => {
-            document.querySelectorAll('.hero .fade-in').forEach(el => {
-                el.classList.add('visible');
-            });
+            document.querySelectorAll('.hero .fade-in').forEach(el => el.classList.add('visible'));
         }, 100);
 
         // Smooth scroll for anchor links
@@ -1809,41 +967,17 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-        // Efecto de typing en terminal
-        const terminalCommands = document.querySelectorAll('.terminal-command');
-        terminalCommands.forEach((cmd, index) => {
-            const text = cmd.textContent;
-            cmd.textContent = '';
-            let i = 0;
-
-            setTimeout(() => {
-                const typeInterval = setInterval(() => {
-                    if (i < text.length) {
-                        cmd.textContent += text.charAt(i);
-                        i++;
-                    } else {
-                        clearInterval(typeInterval);
-                    }
-                }, 30);
-            }, 500 + (index * 800));
-        });
-
-        // Countdown Timer - March 31, 2025 at 20:00 Chile time (America/Santiago)
+        // Countdown Timer - March 31, 2026 at 20:00 Chile time
         function updateCountdown() {
             const now = new Date();
-            // Create target date: March 31, 2025 at 20:00 in Chile timezone
-            const targetDate = new Date('2025-03-31T20:00:00-03:00'); // -03:00 is Chile Summer Time
-            
+            const targetDate = new Date('2026-03-31T20:00:00-03:00');
             const diff = targetDate - now;
-            
+
             if (diff <= 0) {
                 document.getElementById('days').textContent = '00';
                 document.getElementById('hours').textContent = '00';
@@ -1851,38 +985,44 @@
                 document.getElementById('seconds').textContent = '00';
                 return;
             }
-            
+
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
+
             document.getElementById('days').textContent = String(days).padStart(2, '0');
             document.getElementById('hours').textContent = String(hours).padStart(2, '0');
             document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
             document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
         }
-        
+
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const faqItem = button.parentElement;
-                const isActive = faqItem.classList.contains('active');
-                
-                // Close all other items
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
-                });
-                
-                // Toggle current item
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                }
-            });
+        // Navbar background on scroll
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 15, 0.8)';
+            }
         });
+
+        // Lazy-load Typeform iframe when section is visible
+        const tfIframe = document.querySelector('.typeform-wrapper iframe[data-src]');
+        if (tfIframe) {
+            const tfObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tfIframe.src = tfIframe.dataset.src;
+                        tfObserver.unobserve(tfIframe);
+                    }
+                });
+            }, { rootMargin: '200px' });
+            tfObserver.observe(tfIframe);
+        }
     </script>
 
 </body>
