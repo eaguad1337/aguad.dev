@@ -1,158 +1,1029 @@
-{{ define "main" }}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Openclaw! 🦞 x eduaguad — Taller Online Gratuito</title>
+    <meta name="description" content="Aprende a instalar, asegurar y conectar OpenClaw — el asistente open-source con más de 310.000 ⭐ en GitHub. Martes 31 de marzo, 8:00 PM Chile.">
 
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <div class="hero-greeting reveal">Welcome to my digital space</div>
-    
-    <h1 class="hero-name reveal delay-1">Eduardo Aguad</h1>
-    
-    <div class="hero-title reveal delay-2">
-      <span class="typewriter-text" data-text="CTO @ meat.cl & blackdoor.cl" data-speed="60" data-delay="800"></span>
-      <span class="typewriter-cursor"></span>
-    </div>
-    
-    <p class="hero-description reveal delay-3">
-      Father of one, husband and technology enthusiast. Passionate about building 
-      scalable systems and sharing knowledge through code.
-    </p>
-    
-    <div class="hero-cta reveal delay-4">
-      <a href="#work" class="btn btn-primary">View My Work →</a>
-      <a href="https://github.com/eaguad1337" class="btn" target="_blank" rel="noopener">GitHub ↗</a>
-    </div>
-  </div>
-</section>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-<!-- Work Section -->
-<section id="work" class="work">
-  <div class="section-header reveal">
-    <p class="section-label">Work</p>
-    <h2 class="section-title">Current Ventures</h2>
-    <p class="section-subtitle">Leading technology at innovative companies in Chile.</p>
-  </div>
-  
-  <div class="work-grid">
-    <!-- meat.cl -->
-    <a href="https://www.meat.cl?utm_source=aguad.dev" target="_blank" rel="noopener" class="work-card reveal delay-1">
-      <div class="work-card-header">
-        <h3 class="work-card-title">meat.cl</h3>
-        <span class="work-card-arrow">↗</span>
-      </div>
-      <p class="work-card-role">Chief Technology Officer</p>
-      <p class="work-card-description">
-        Leading the technology strategy and engineering team at one of Chile's 
-        most innovative meat distribution platforms.
-      </p>
-    </a>
-    
-    <!-- blackdoor.cl -->
-    <a href="https://www.blackdoor.cl?utm_source=aguad.dev" target="_blank" rel="noopener" class="work-card reveal delay-2">
-      <div class="work-card-header">
-        <h3 class="work-card-title">blackdoor.cl</h3>
-        <span class="work-card-arrow">↗</span>
-      </div>
-      <p class="work-card-role">Chief Technology Officer</p>
-      <p class="work-card-description">
-        Building the technical infrastructure and product engineering for a 
-        modern digital solutions company.
-      </p>
-    </a>
-  </div>
-</section>
+    <style>
+        /* ============================================
+           VARIABLES Y RESET
+           ============================================ */
+        :root {
+            --bg-primary: #0A0A0F;
+            --bg-secondary: #111118;
+            --bg-card: #16161F;
+            --bg-card-hover: #1E1E28;
+            --accent: #FF4545;
+            --accent-hover: #FF6666;
+            --accent-glow: rgba(255, 69, 69, 0.3);
+            --text-primary: #FFFFFF;
+            --text-secondary: #B4B4BE;
+            --text-muted: #6B6B78;
+            --terminal-green: #00D4AA;
+            --terminal-teal: #00B8A9;
+            --border: rgba(255, 255, 255, 0.08);
+            --gradient-hero: radial-gradient(ellipse at 50% 0%, rgba(255, 69, 69, 0.15) 0%, transparent 50%),
+                               radial-gradient(ellipse at 100% 100%, rgba(0, 212, 170, 0.08) 0%, transparent 40%);
+            --light-bg: #F8F8FB;
+            --light-text: #1A1A2E;
+            --light-text-secondary: #4A4A5A;
+            --light-border: rgba(0, 0, 0, 0.08);
+        }
 
-<!-- Blog Section -->
-<section id="blog" class="blog">
-  <div class="section-header reveal">
-    <p class="section-label">Latest Posts</p>
-    <h2 class="section-title">From the Blog</h2>
-    <p class="section-subtitle">Sharing knowledge about technology, programming, and databases.</p>
-  </div>
-  
-  <div class="blog-grid">
-    {{ range first 3 (where .Site.RegularPages "Type" "posts") }}
-    <a href="{{ .RelPermalink }}" class="blog-card reveal">
-      <p class="blog-card-date">{{ .Date.Format "Jan 2, 2006" }}</p>
-      <h3 class="blog-card-title">{{ .Title }}</h3>
-      <p class="blog-card-summary">{{ .Summary | truncate 120 }}</p>
-      <span class="blog-card-readmore">Read more →</span>
-    </a>
-    {{ end }}
-  </div>
-  
-  <div style="text-align: center; max-width: 900px; margin: 0 auto;">
-    <a href="{{ "/posts/" | relURL }}" class="view-all-link reveal">View all posts →</a>
-  </div>
-</section>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<!-- About Section -->
-<section id="about" class="about">
-  <div class="section-header reveal">
-    <p class="section-label">About</p>
-    <h2 class="section-title">Who I Am</h2>
-  </div>
-  
-  <div class="about-content reveal delay-1">
-    <img 
-      src="https://avatars.githubusercontent.com/u/19355144?v=4" 
-      alt="Eduardo Aguad" 
-      class="about-image"
-      loading="lazy"
-    >
-    
-    <div class="about-text">
-      <p>
-        I'm a software engineer passionate about technology, databases, and sharing 
-        knowledge through my blog. I enjoy exploring new technologies and creating 
-        simple, instructive guides to help others in their tech journey.
-      </p>
-      <p>
-        Currently serving as CTO at <a href="https://www.meat.cl?utm_source=aguad.dev" target="_blank" rel="noopener">meat.cl</a> 
-        and <a href="https://www.blackdoor.cl?utm_source=aguad.dev" target="_blank" rel="noopener">blackdoor.cl</a>, 
-        where I lead engineering teams and architect scalable solutions.
-      </p>
-      
-      <p>
-        When I'm not coding, you'll find me being a father, exploring new tech, 
-        or sharing insights on my social channels.
-      </p>
-    </div>
-  </div>
-</section>
+        html {
+            scroll-behavior: smooth;
+        }
 
-<!-- Social Section -->
-<section id="social" class="social">
-  <div class="section-header reveal">
-    <p class="section-label">Connect</p>
-    <h2 class="section-title">Let's Connect</h2>
-    <p class="section-subtitle">Find me across the internet.</p>
-  </div>
-  
-  <div class="social-grid reveal delay-1">
-    <!-- GitHub -->
-    <a href="https://github.com/eaguad1337" target="_blank" rel="noopener" class="social-link">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-      </svg>
-      GitHub — eaguad1337
-    </a>
-    
-    <!-- Instagram -->
-    <a href="https://www.instagram.com/eaguad" target="_blank" rel="noopener" class="social-link">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-      </svg>
-      Instagram — @eaguad
-    </a>
-    
-    <!-- TikTok -->
-    <a href="https://www.tiktok.com/@eduaguad" target="_blank" rel="noopener" class="social-link">
-      <svg viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-      </svg>
-      TikTok — @eduaguad
-    </a>
-  </div>
-</section>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-{{ end }}
+        /* ============================================
+           UTILIDADES
+           ============================================ */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================
+           NAVBAR
+           ============================================ */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 24px;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: background 0.3s ease;
+        }
+
+        .navbar-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .navbar-logo {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-primary);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .navbar-links {
+            display: none;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-links {
+                display: flex;
+            }
+        }
+
+        .navbar-links a {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .navbar-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .navbar-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 18px;
+            font-size: 13px;
+            font-weight: 600;
+            color: white;
+            background: var(--accent);
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .navbar-cta:hover {
+            background: var(--accent-hover);
+            transform: translateY(-1px);
+        }
+
+        /* ============================================
+           BADGE
+           ============================================ */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(255, 69, 69, 0.15);
+            border: 1px solid rgba(255, 69, 69, 0.3);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* ============================================
+           BOTONES
+           ============================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px var(--accent-glow);
+        }
+
+        .btn-large {
+            padding: 20px 40px;
+            font-size: 18px;
+            border-radius: 14px;
+        }
+
+        /* ============================================
+           SECCIONES
+           ============================================ */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-tag {
+            display: inline-block;
+            padding: 8px 16px;
+            background: rgba(0, 212, 170, 0.1);
+            border: 1px solid rgba(0, 212, 170, 0.2);
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--terminal-green);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient-hero);
+            position: relative;
+            padding-top: 100px;
+            padding-bottom: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-visual {
+            order: -1;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1.2fr 1fr;
+                gap: 60px;
+            }
+
+            .hero-visual {
+                order: 0;
+            }
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero h1 {
+            font-size: clamp(36px, 6vw, 64px);
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 24px 0 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--terminal-teal) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 2.5vw, 22px);
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .hero-meta-item svg {
+            width: 20px;
+            height: 20px;
+            color: var(--accent);
+        }
+
+        /* Countdown */
+        .countdown {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
+            max-width: 400px;
+        }
+
+        .countdown-item {
+            text-align: center;
+            padding: 16px 8px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .countdown-number {
+            display: block;
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .countdown-label {
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .hero-social-proof {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-align: left;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            border-radius: 24px;
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5), 0 0 60px rgba(255, 69, 69, 0.15);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* ============================================
+           STATS — CREDIBILIDAD
+           ============================================ */
+        .stats-section {
+            padding: 80px 0;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 48px 24px;
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .stats-row {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .stat-value {
+            font-size: clamp(40px, 6vw, 72px);
+            font-weight: 900;
+            color: var(--text-primary);
+            line-height: 1;
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+        }
+
+        .stat-value .accent {
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* ============================================
+           AGENDA — MINIMAL
+           ============================================ */
+        .agenda {
+            background: var(--light-bg);
+            color: var(--light-text);
+        }
+
+        .agenda-list {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .agenda-item {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+        }
+
+        .agenda-arrow {
+            font-size: 20px;
+            color: var(--accent);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .agenda-item-text h3 {
+            font-size: clamp(20px, 3vw, 24px);
+            font-weight: 700;
+            color: var(--light-text);
+            margin-bottom: 4px;
+        }
+
+        .agenda-item-text p {
+            font-size: 16px;
+            color: var(--light-text-secondary);
+        }
+
+        /* ============================================
+           INSTRUCTOR (DARK)
+           ============================================ */
+        .instructor {
+            background: var(--bg-secondary);
+        }
+
+        .instructor-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .instructor-avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid var(--accent);
+            box-shadow: 0 0 40px rgba(255, 69, 69, 0.15);
+        }
+
+        .instructor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .instructor-name {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-primary);
+        }
+
+        .instructor-title {
+            font-size: 15px;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .instructor-bio {
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        .instructor-social {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .social-link img {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* ============================================
+           REGISTRO
+           ============================================ */
+        .register {
+            padding: 100px 0;
+            background: var(--bg-primary);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 69, 69, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .register-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .register h2 {
+            font-size: clamp(32px, 5vw, 56px);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+        }
+
+        .register-meta {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .register-meta span {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        .register-meta span:not(:last-child)::after {
+            content: '·';
+            margin-left: 12px;
+        }
+
+        .typeform-wrapper {
+            max-width: 620px;
+            margin: 0 auto;
+            min-height: 400px;
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            padding: 48px 0;
+            background: var(--bg-primary);
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .footer-social .social-link {
+            background: var(--bg-card);
+            border-color: var(--border);
+        }
+
+        .footer-info {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* ============================================
+           RESPONSIVE
+           ============================================ */
+        @media (max-width: 768px) {
+            section {
+                padding: 60px 0;
+            }
+
+            .hero {
+                padding-top: 80px;
+                padding-bottom: 40px;
+                min-height: auto;
+            }
+
+            .countdown {
+                gap: 8px;
+            }
+
+            .countdown-item {
+                padding: 12px 6px;
+            }
+
+            .countdown-number {
+                font-size: 24px;
+            }
+
+            .countdown-label {
+                font-size: 9px;
+            }
+
+            .register-card {
+                padding: 40px 24px;
+            }
+
+            .stats-section {
+                padding: 60px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         NAVBAR
+         ============================================ -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="navbar-logo">eduaguad 🦞</a>
+            <ul class="navbar-links">
+                <li><a href="#taller">Taller</a></li>
+                <li><a href="#agenda">Agenda</a></li>
+                <li><a href="#instructor">Instructor</a></li>
+                <li><a href="#registro">Registro</a></li>
+            </ul>
+            <a href="https://form.typeform.com/to/rPmanD7l" class="navbar-cta">Registrarme →</a>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO (DARK)
+         ============================================ -->
+    <section class="hero" id="taller">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content fade-in">
+                    <div class="badge">Taller Online Gratuito</div>
+                    <h1>Crea tu primer <span>agente de IA</span> autónomo</h1>
+                    <p class="hero-subtitle">
+                        Aprende cómo comenzar a utilizar Openclaw 🦞 para generar tu propio asistente.
+                    </p>
+                    <div class="hero-meta">
+                        <div class="hero-meta-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                            Martes, 31 de marzo
+                        </div>
+                        <div class="hero-meta-item">
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            8:00 – 9:00 PM (Chile)
+                        </div>
+                    </div>
+
+                    <!-- Countdown Timer -->
+                    <div class="countdown" id="countdown">
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="days">00</span>
+                            <span class="countdown-label">Días</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="hours">00</span>
+                            <span class="countdown-label">Horas</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="minutes">00</span>
+                            <span class="countdown-label">Minutos</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-number" id="seconds">00</span>
+                            <span class="countdown-label">Segundos</span>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta">
+                        <a href="https://form.typeform.com/to/rPmanD7l" class="btn btn-primary btn-large">
+                            Quiero mi cupo gratis →
+                        </a>
+                    </div>
+                    <!-- <p class="hero-social-proof">🔥 +120 personas ya se registraron · Cupos limitados</p> -->
+                </div>
+                <div class="hero-visual fade-in">
+                    <img src="/openclaw/hero-lobster.png" alt="OpenClaw Agent" class="hero-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         STATS — CREDIBILIDAD
+         ============================================ -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-row fade-in">
+                <div class="stat-item">
+                    <div class="stat-value">310K<span class="accent">+</span></div>
+                    <div class="stat-label">Stars en GitHub<br>en solo 4 meses</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">Top <span class="accent">10</span></div>
+                    <div class="stat-label">Proyecto más popular<br>de GitHub global</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100<span class="accent">%</span></div>
+                    <div class="stat-label">Open source<br>y gratuito</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">60 <span class="accent">min</span></div>
+                    <div class="stat-label">Y tu agente<br>está corriendo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         AGENDA (DARK) — MINIMAL
+         ============================================ -->
+    <section class="agenda" id="agenda">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-tag" style="background: rgba(255, 69, 69, 0.08); border-color: rgba(255, 69, 69, 0.2); color: var(--accent);">Agenda del Taller</div>
+                <h2 class="section-title" style="color: var(--light-text);">Aprende a configurarlo sin costo.</h2>
+                <p class="section-subtitle" style="color: var(--light-text-secondary);">Sin suscripciones, seguro y local.</p>
+            </div>
+            <div class="agenda-list">
+                <div class="agenda-item fade-in">
+                    <span class="agenda-arrow">→</span>
+                    <div class="agenda-item-text">
+                        <h3>Aprende los fundamentos</h3>
+                        <p>Cómo funciona, por qué surge y cómo se compone.</p>
+                    </div>
+                </div>
+                <div class="agenda-item fade-in">
+                    <span class="agenda-arrow">→</span>
+                    <div class="agenda-item-text">
+                        <h3>Métodos de despliegue</h3>
+                        <p>Revisaremos las distintas formas de desplegar el agente.</p>
+                    </div>
+                </div>
+                <div class="agenda-item fade-in">
+                    <span class="agenda-arrow">→</span>
+                    <div class="agenda-item-text">
+                        <h3>Conectar y automatizar</h3>
+                        <p>Cómo añadir skills y hacer que tu agente use tus servicios.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         INSTRUCTOR (DARK)
+         ============================================ -->
+    <section class="instructor" id="instructor">
+        <div class="container">
+            <div class="section-header fade-in">
+                <div class="section-tag" style="background: rgba(255, 69, 69, 0.08); border-color: rgba(255, 69, 69, 0.2); color: var(--accent);">Acerca de mi</div>
+                <h2 class="section-title">@eduaguad</h2>
+            </div>
+            <div class="instructor-layout fade-in">
+                <div class="instructor-avatar">
+                    <img src="https://unavatar.io/github/eaguad1337" alt="Eduardo Aguad" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 180 180\'%3E%3Crect fill=\'%23FF4545\' width=\'180\' height=\'180\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'white\' font-size=\'72\' font-family=\'Inter\' font-weight=\'800\'%3EEA%3C/text%3E%3C/svg%3E'">
+                </div>
+                <h3 class="instructor-name">Eduardo Aguad</h3>
+                <!-- <p class="instructor-title">Divulgador de tecnología</p> -->
+                <p class="instructor-bio">
+                    Soy un apasionado por la tecnología y me dedico a explicar en simple las cosas para que también las conozcas.
+                </p>
+                <div class="instructor-social">
+                    <a href="https://instagram.com/eaguad" target="_blank" class="social-link" aria-label="Instagram">
+                        <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram">
+                    </a>
+                    <a href="https://tiktok.com/@eduaguad" target="_blank" class="social-link" aria-label="TikTok">
+                        <img src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         REGISTRO (DARK) — CTA FINAL
+         ============================================ -->
+    <section class="register" id="registro">
+        <div class="container">
+            <div class="register-inner fade-in">
+                <h2>Deja de chatear con IA.<br>Ponla a <span style="color: var(--accent);">trabajar.</span></h2>
+                <div class="register-meta">
+                    <span>Martes 31 de marzo</span>
+                    <span>8:00 – 9:00 PM</span>
+                    <span>Online y gratuito</span>
+                </div>
+                <div class="typeform-wrapper">
+                    <iframe data-src="https://form.typeform.com/to/rPmanD7l?typeform-medium=embed-snippet" loading="lazy" style="width:100%; height:500px; border:none; border-radius:16px;"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Openclaw! 🦞 x eduaguad</div>
+            <div class="footer-social">
+                <a href="https://instagram.com/eaguad" target="_blank" class="social-link" aria-label="Instagram">
+                    <img src="https://cdn.simpleicons.org/instagram/E4405F" alt="Instagram">
+                </a>
+                <a href="https://tiktok.com/@eduaguad" target="_blank" class="social-link" aria-label="TikTok">
+                    <img src="https://cdn.simpleicons.org/tiktok/FFFFFF" alt="TikTok">
+                </a>
+            </div>
+            <p class="footer-info">
+                Martes 31 de marzo · 8:00 – 9:00 PM · Online
+            </p>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         SCRIPTS
+         ============================================ -->
+    <script>
+        // Fade-in on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Hero immediate fade-in
+        setTimeout(() => {
+            document.querySelectorAll('.hero .fade-in').forEach(el => el.classList.add('visible'));
+        }, 100);
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Countdown Timer - March 31, 2026 at 20:00 Chile time
+        function updateCountdown() {
+            const now = new Date();
+            const targetDate = new Date('2026-03-31T20:00:00-03:00');
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // Navbar background on scroll
+        const navbar = document.querySelector('.navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(10, 10, 15, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(10, 10, 15, 0.8)';
+            }
+        });
+
+        // Lazy-load Typeform iframe when section is visible
+        const tfIframe = document.querySelector('.typeform-wrapper iframe[data-src]');
+        if (tfIframe) {
+            const tfObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        tfIframe.src = tfIframe.dataset.src;
+                        tfObserver.unobserve(tfIframe);
+                    }
+                });
+            }, { rootMargin: '200px' });
+            tfObserver.observe(tfIframe);
+        }
+    </script>
+
+</body>
+</html>
