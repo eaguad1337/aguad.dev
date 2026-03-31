@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Openclaw! 🦞 x eduaguad — Taller Online Gratuito</title>
-    <meta name="description" content="Aprende a instalar, asegurar y conectar OpenClaw — el asistente open-source con más de 310.000 ⭐ en GitHub. Martes 31 de marzo, 8:00 PM Chile.">
+    <title>Openclaw! 🦞 x eduaguad — Taller Completado</title>
+    <meta name="description" content="Gracias por asistir al taller de OpenClaw. Accede a la grabación, slides y código del taller de agentes de IA autónomos.">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -746,61 +746,43 @@
                 <li><a href="#taller">Taller</a></li>
                 <li><a href="#agenda">Agenda</a></li>
                 <li><a href="#instructor">Instructor</a></li>
-                <li><a href="#registro">Registro</a></li>
+                <li><a href="#recursos">Recursos</a></li>
             </ul>
-            <a href="https://form.typeform.com/to/rPmanD7l" class="navbar-cta">Registrarme →</a>
+            <a href="#recursos" class="navbar-cta">Ver recursos →</a>
         </div>
     </nav>
 
     <!-- ============================================
-         HERO (DARK)
+         HERO (DARK) — GRACIAS
          ============================================ -->
     <section class="hero" id="taller">
         <div class="container">
             <div class="hero-grid">
                 <div class="hero-content fade-in">
-                    <div class="badge">Taller Online Gratuito</div>
-                    <h1>Crea tu primer <span>agente de IA</span> autónomo</h1>
+                    <div class="badge" style="background: rgba(0, 212, 170, 0.15); border-color: rgba(0, 212, 170, 0.3); color: var(--terminal-green);">
+                        Taller Completado
+                    </div>
+                    <h1>¡<span>Gracias</span> por ser parte!</h1>
                     <p class="hero-subtitle">
-                        Aprende cómo comenzar a utilizar Openclaw 🦞 para generar tu propio asistente.
+                        El taller de OpenClaw 🦞 ya se realizó. Espero que hayas aprendido a crear tu primer agente de IA autónomo.
                     </p>
                     <div class="hero-meta">
                         <div class="hero-meta-item">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                            Martes, 31 de marzo
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            Martes, 31 de marzo 2026
                         </div>
                         <div class="hero-meta-item">
-                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                            8:00 – 9:00 PM (Chile)
-                        </div>
-                    </div>
-
-                    <!-- Countdown Timer -->
-                    <div class="countdown" id="countdown">
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="days">00</span>
-                            <span class="countdown-label">Días</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="hours">00</span>
-                            <span class="countdown-label">Horas</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="minutes">00</span>
-                            <span class="countdown-label">Minutos</span>
-                        </div>
-                        <div class="countdown-item">
-                            <span class="countdown-number" id="seconds">00</span>
-                            <span class="countdown-label">Segundos</span>
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            +120 asistentes
                         </div>
                     </div>
 
                     <div class="hero-cta">
-                        <a href="https://form.typeform.com/to/rPmanD7l" class="btn btn-primary btn-large">
-                            Quiero mi cupo gratis →
+                        <a href="#recursos" class="btn btn-primary btn-large">
+                            Ver recursos del taller →
                         </a>
                     </div>
-                    <!-- <p class="hero-social-proof">🔥 +120 personas ya se registraron · Cupos limitados</p> -->
+                    <p class="hero-social-proof">📹 La grabación y materiales están disponibles abajo</p>
                 </div>
                 <div class="hero-visual fade-in">
                     <img src="/openclaw/hero-lobster.png" alt="OpenClaw Agent" class="hero-image">
@@ -1010,18 +992,11 @@
             }
         });
 
-        // Lazy-load Typeform iframe when section is visible
-        const tfIframe = document.querySelector('.typeform-wrapper iframe[data-src]');
-        if (tfIframe) {
-            const tfObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        tfIframe.src = tfIframe.dataset.src;
-                        tfObserver.unobserve(tfIframe);
-                    }
-                });
-            }, { rootMargin: '200px' });
-            tfObserver.observe(tfIframe);
+    </script>
+
+</body>
+</html>
+  tfObserver.observe(tfIframe);
         }
     </script>
 
