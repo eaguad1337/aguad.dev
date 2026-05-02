@@ -16,7 +16,7 @@ hugo server -D
 hugo --gc --minify
 ```
 
-Hugo must be installed locally (`hugo` CLI). The extended version with Sass support is used (v0.128.0+).
+Hugo must be installed locally (`hugo` CLI), v0.128.0+.
 
 ## Architecture
 
