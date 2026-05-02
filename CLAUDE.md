@@ -24,7 +24,7 @@ Hugo must be installed locally (`hugo` CLI). The extended version with Sass supp
 - **Single-page landing** at `layouts/index.html` with anchor sections: `#work`, `#blog`, `#about`, `#social`
 - **Blog posts** live in `content/posts/` as Markdown with Hugo front matter
 - **Asset pipeline**: Hugo processes `assets/css/main.css` and `assets/js/main.js` (minified in production)
-- **Static files** in `static/` are served as-is (images, the standalone `/openclaw/` page)
+- **Static files** in `static/` are served as-is
 - **Templates**: `layouts/partials/` for reusable components (head, navbar, footer, scripts), `layouts/_default/` for baseof/single/list
 
 ## Styling
